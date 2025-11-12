@@ -1,0 +1,44 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #E70089;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 6px 12px rgba(231, 0, 137, 0.5);
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+  max-width: clamp(280px, 80vw, 320px);
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile view: position at bottom */
+@media (max-width: 480px) {
+  .notification {
+    top: auto;
+    bottom: 20px;
+    right: 10px;
+    left: 10px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    max-width: unset;
+    border-radius: 8px;
+    transform: translateY(20px);
+  }
+  .notification.show {
+    transform: translateY(0);
+  }
+}

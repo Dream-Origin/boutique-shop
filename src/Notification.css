@@ -1,0 +1,21 @@
+/* src/components/Notification.css */
+
+.notification {
+  position: fixed;
+  top: 100px;
+  right: var(--space-24);
+  background: var(--color-success);
+  color: white;
+  padding: var(--space-16) var(--space-24);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all var(--duration-normal) var(--ease-standard);
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}

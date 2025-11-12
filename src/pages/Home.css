@@ -1,0 +1,165 @@
+/* src/pages/Home.css */
+
+/* Hero section already styled in App.css/Header.css */
+
+
+
+.carousel-section {
+  width: 100%;
+  margin: 0 auto;
+  /* padding: var(--space-24) var(--space-24) 0; */
+}
+
+@media (max-width: 768px) {
+  .carousel-section {
+    /* padding: var(--space-16) var(--space-16) 0; */
+  }
+}
+
+
+.categories-section {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.categories-title {
+  text-align: center;
+  margin-bottom: var(--space-24);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.categories-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-12);
+}
+
+.categories-circles-row {
+  display: flex;
+  gap: var(--space-32);
+  justify-content: center;  /* CENTERED always */
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.category-circle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;      /* Center label text */
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+  transition: transform 0.21s;
+  padding: 0 var(--space-8);
+}
+
+.category-circle-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: var(--space-8);
+  transition: box-shadow 0.2s, transform 0.14s;
+  background: #f7f7f7;
+}
+
+.category-circle-card:hover img,
+.category-circle-card:focus img {
+  box-shadow: 0 4px 18px 0 rgba(27,164,165,0.18);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.category-circle-label {
+  margin-top: var(--space-4);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  max-width: 120px;
+  width: 100%;
+  word-break: break-word;
+  white-space: normal;   /* Allow wrap */
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* Responsive: Tablet */
+@media (max-width: 900px) {
+  .categories-circles-row {
+    gap: var(--space-20);
+  }
+  .category-circle-card {
+    width: 96px;
+    min-width: 96px;
+  }
+  .category-circle-card img {
+    width: 86px;
+    height: 86px;
+  }
+  .category-circle-label {
+    font-size: 14px;
+    max-width: 94px;
+  }
+}
+
+/* Responsive: Mobile (center, scroll, wrap text, make img big enough) */
+@media (max-width: 600px) {
+  .categories-section {
+    padding: var(--space-4) var(--space-4);
+  }
+  .categories-scroll-wrapper {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  .categories-circles-row {
+    gap: var(--space-10);
+    justify-content: flex-start; /* Still scrollable but not spaced out */
+    padding-bottom: var(--space-4);
+  }
+  .category-circle-card {
+    min-width: 112px;
+    width: 112px;
+    padding: 0 var(--space-2);
+  }
+  .category-circle-card img {
+    width: 92px;
+    height: 92px;
+  }
+  .category-circle-label {
+    font-size: 13px;
+    max-width: 102px;
+    margin-top: var(--space-2);
+    line-height: 1.15;
+    /* Wrap lines if long names */
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 430px) {
+  .category-circle-card {
+    min-width: 95px;
+    width: 95px;
+  }
+  .category-circle-card img {
+    width: 95px;
+    height: 95px;
+  }
+  .category-circle-label {
+    font-size: 10px;
+    max-width: 91px;
+  }
+}
+
+.responsive-image-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: contain; /* Optional: ensures image fits nicely */
+}

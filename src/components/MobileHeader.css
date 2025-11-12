@@ -1,0 +1,194 @@
+:root {
+  --modern-pink: #E70089;
+  --soft-bg: #fef4ee;
+  --sidebar-bg: #f3e8fb;
+}
+
+
+/* Top Header Bar */
+.mobile-header-bar {
+  display: flex;
+  align-items: center;
+  padding: 9px 2vw;
+  background: #f3e8fb;
+  position: sticky;
+  top: 0;
+  z-index: 270;
+  border-bottom: 1px solid #f3e8fb;
+  box-shadow: 0 0 7px 0 rgba(162,29,203,0.04);
+}
+
+/* Hamburger/cross icon */
+.header-icon {
+  background: none;
+  border: none;
+  font-size: 26px; /* Big icons for taps */
+  color: #444;
+  cursor: pointer;
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-hamburger, .icon-close {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.icon-close { color: #E70089; }
+
+.mobile-logo {
+  color: var(--modern-pink);
+  font-size: 1.18rem;
+  font-weight: 600;
+  flex-grow: 1;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin: 0 7px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -2px;
+  background: #222;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-sidebar-bg {
+  position: fixed;
+  inset: 0;
+  background: var(--sidebar-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.20s;
+  z-index: 250;
+}
+.mobile-sidebar-bg.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100svh;
+  background: var(--);
+  box-shadow: 0 0 24px 0 rgba(162,29,203,0.06);
+  padding-top: 65px;
+  z-index: 260;
+  transform: translateX(-100%);
+  transition: transform 0.20s cubic-bezier(.5,1.7,.6,1.28);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+/* SIDEBAR MENU - ENFORCE TINY */
+.mobile-menu-list {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 500;
+  /* padding: 17px 21px; */
+}
+.mobile-menu-list span {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #e664b18c;
+  text-transform: uppercase;
+}
+.mobile-menu-list span:hover {
+  background: #f5e7fd;
+  color: var(--modern-pink);
+}
+.mobile-menu-link {
+  color: #43334b;
+  text-decoration: none;
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+  transition: color 0.14s;
+  
+}
+.arrow {
+  margin-left: auto;
+  font-size: 1.2em;
+  color: #E70089;
+}
+
+.mobile-menu-link:hover {
+  color: var(--modern-pink);
+  background: #f5e7fd;
+}
+
+.mobile-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  border-top: 1.5px solid #eee5f8;
+  display: flex;
+  justify-content: space-evenly;   /* Distribute evenly */
+  align-items: center;             /* Vertically center icons/text */
+  height: 52px;                    /* Fixed height */
+  z-index: 300;
+  padding: 0 4px;                  /* Small horizontal padding */
+  box-sizing: border-box;
+}
+
+.tab-link {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #E70089;
+  font-size: 13px; 
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  user-select: none;
+  transition: color 0.13s;
+  padding: 4px 0;               /* Padding for tap targets */
+  min-width: 50px;              /* Minimum width for each tab */
+}
+
+.tab-link.active {
+  color: #7d15a0;
+  font-weight: 700;
+}
+
+.tab-link:active {
+  color: #5a0e7b;
+}
+
+.tab-icon {
+  font-size: 18px;
+  line-height: 1;
+  padding-bottom: 1px;
+}
+
+
+@media (min-width: 700px) {
+  .mobile-header-bar, .mobile-tab-bar, .mobile-sidebar { display: none !important; }
+}
+
+/* Ensure all elements in sidebar inherit tiny font size */
+.mobile-sidebar, .mobile-sidebar * { font-size: 16px; }
