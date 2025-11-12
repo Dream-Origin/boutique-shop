@@ -1,0 +1,56 @@
+.features-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Remove card styling by resetting border, shadow, and padding */
+.feature-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 250px;
+  min-width: 150px;
+}
+
+.feature-icon {
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.feature-card p {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Responsive for mobile with two cards per row */
+@media (max-width: 768px) {
+  .features-grid {
+    gap: 20px;
+  }
+  .feature-card {
+    flex: 1 1 45%;
+    max-width: none;
+  }
+}
+
+/* For extra small screens, keep two cards per row, no stacking */
+@media (max-width: 480px) {
+  .feature-card {
+    flex: 1 1 45%;
+  }
+}

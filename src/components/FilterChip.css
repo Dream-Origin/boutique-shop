@@ -1,0 +1,41 @@
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  background: #fff;
+  font-size: 0.7rem;
+  padding: 6px 14px 6px 11px;
+  border-radius: 22px;
+  margin: 0 7px 7px 0;
+  letter-spacing: 0.1em;
+  border: 1px solid #7e8487;
+  transition: background .17s;
+  position: relative;
+}
+
+.filter-chip-remove {
+  background: none;
+  border: none;
+  color: #E70089;
+  font-size: 1.17em;
+  cursor: pointer;
+  margin-left: 6px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 2px;
+  border-radius: 50%;
+  transition: background 0.14s, color 0.13s;
+}
+
+.filter-chip-remove:hover,
+.filter-chip-remove:focus {
+  background: #f7b2d4;
+  color: #a80062;
+}
+
+@media (max-width: 600px) {
+  .filter-chip {
+    font-size: 0.7rem;
+    padding: 5px 11px 5px 8px;
+  }
+}
