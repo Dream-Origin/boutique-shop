@@ -12,6 +12,7 @@ import banner2 from '../data/images/banner2.png';
 import BoutiqueCard from '../components/BoutiqueCard'
 import HeroCard from '../components/HeroCard'
 import PriceFilterSection from '../components/PriceFilterSection'
+import GoogleReviews from "../components/GoogleReviews";
 
 
 function Home() {
@@ -104,6 +105,10 @@ function Home() {
           onChange={handlePriceRangeChange}
         />
 
+      </section>
+
+      <section>
+        <GoogleReviews />
       </section>
 
       <FeaturesSection />
