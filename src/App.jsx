@@ -17,15 +17,17 @@ import OrderSuccess from './pages/OrderSuccess'
 import AppHeader from './components/AppHeader'
 import { useSelector } from 'react-redux'
 import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts'
+import AdminRoute from './admin/AdminRoute'
+import AdminLayout from './admin/AdminLayout'
 
 // Protected Route Component
 function ProtectedRoute({ children, isAuthenticated }) {
   const location = useLocation()
-  
+
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
-  
+
   return children
 }
 
@@ -35,7 +37,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState({ show: false, message: '' })
   const filteredProducts = useSelector(selectFilteredProducts)
-
+  const isAdminRoute = location.pathname.startsWith('/admin')
   const isAuthenticated = !!user
 
   const showNotification = (message) => {
@@ -62,136 +64,146 @@ function App() {
     setWishlist([])
     showNotification('Logged out successfully')
   }
-const addToCart = (id) => {
-  
-  const product = filteredProducts.find(p => p.id === id);
-  
-  const existingItem = cart.find(item => item.id === id);
+  const addToCart = (id) => {
 
-  if (existingItem) {
-    setCart(cart.map(item =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    ));
-  } else {
-    setCart([...cart, { ...product, quantity: 1 }]);
-  }
-  showNotification(`${product.title} added to cart!`);
-}
+    const product = filteredProducts.find(p => p.id === id);
 
-const removeFromCart = (id) => {
-  setCart(cart.filter(item => item.id !== id));
-  showNotification('Item removed from cart');
-}
+    const existingItem = cart.find(item => item.id === id);
 
-const updateQuantity = (id, change) => {
-  const item = cart.find(item => item.id === id);
-  if (item) {
-    const newQuantity = item.quantity + change;
-    if (newQuantity <= 0) {
-      removeFromCart(id);
-    } else {
+    if (existingItem) {
       setCart(cart.map(item =>
         item.id === id
-          ? { ...item, quantity: newQuantity }
+          ? { ...item, quantity: item.quantity + 1 }
           : item
       ));
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+    showNotification(`${product.title} added to cart!`);
+  }
+
+  const removeFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+    showNotification('Item removed from cart');
+  }
+
+  const updateQuantity = (id, change) => {
+    const item = cart.find(item => item.id === id);
+    if (item) {
+      const newQuantity = item.quantity + change;
+      if (newQuantity <= 0) {
+        removeFromCart(id);
+      } else {
+        setCart(cart.map(item =>
+          item.id === id
+            ? { ...item, quantity: newQuantity }
+            : item
+        ));
+      }
     }
   }
-}
 
-const clearCart = () => {
-  if (window.confirm('Are you sure you want to clear the cart?')) {
-    setCart([]);
-    showNotification('Cart cleared!');
+  const clearCart = () => {
+    if (window.confirm('Are you sure you want to clear the cart?')) {
+      setCart([]);
+      showNotification('Cart cleared!');
+    }
   }
-}
 
-const toggleWishlist = (id) => {
-  const product = filteredProducts.find(p => p.id === id);
-  const index = wishlist.findIndex(item => item.id === id);
+  const toggleWishlist = (id) => {
+    const product = filteredProducts.find(p => p.id === id);
+    const index = wishlist.findIndex(item => item.id === id);
 
-  if (index > -1) {
-    setWishlist(wishlist.filter(item => item.id !== id));
-    showNotification(`${product.name} removed from wishlist`);
-  } else {
-    setWishlist([...wishlist, product]);
-    showNotification(`${product.name} added to wishlist!`);
+    if (index > -1) {
+      setWishlist(wishlist.filter(item => item.id !== id));
+      showNotification(`${product.name} removed from wishlist`);
+    } else {
+      setWishlist([...wishlist, product]);
+      showNotification(`${product.name} added to wishlist!`);
+    }
   }
-}
 
-const isInWishlist = (id) => {
-  return wishlist.some(item => item.id === id);
-}
+  const isInWishlist = (id) => {
+    return wishlist.some(item => item.id === id);
+  }
 
 
   return (
     <>
       <ScrollToTop />
-      <AppHeader cart ={cart} />   
-      
+      {isAdminRoute ? <br /> : <AppHeader cart={cart} />}
+      {/* <AppHeader cart={cart} /> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register onRegister={handleRegister} />} />
-        <Route 
-          path="/products" 
+        <Route
+          path="/products"
           element={
-            <Shop 
+            <Shop
               onAddToCart={addToCart}
               onToggleWishlist={toggleWishlist}
               isInWishlist={isInWishlist}
             />
-          } 
+          }
         />
-        <Route 
-          path="/product/:id" 
+        <Route
+          path="/product/:id"
           element={
-            <ProductDetails 
+            <ProductDetails
               onAddToCart={addToCart}
               onToggleWishlist={toggleWishlist}
               isInWishlist={isInWishlist}
             />
-          } 
+          }
         />
-        <Route 
-          path="/cart" 
+        <Route
+          path="/cart"
           element={
-            <Cart 
+            <Cart
               cart={cart}
               onUpdateQuantity={updateQuantity}
               onRemoveFromCart={removeFromCart}
               onClearCart={clearCart}
             />
-          } 
+          }
         />
-        <Route 
-          path="/wishlist" 
+        <Route
+          path="/wishlist"
           element={
-            <Wishlist 
+            <Wishlist
               wishlist={wishlist}
               onAddToCart={addToCart}
               onRemoveFromWishlist={toggleWishlist}
             />
-          } 
+          }
         />
-        <Route 
-          path="/checkout" 
+        <Route
+          path="/checkout"
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               <Checkout cart={cart} user={user} />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route
+          path="/admin/*"
+          element={
+            <AdminRoute user={{ name: "Admin", role: "admin" }}>
+              <AdminLayout /> {/* Wrap with admin layout or dashboard */}
+            </AdminRoute>
+          }
+        />
       </Routes>
 
-      <Notification 
+      <Notification
         show={notification.show}
         message={notification.message}
       />
-      <Footer />
+      {isAdminRoute ? <br /> : <Footer />}
+      {/* <Footer /> */}
     </>
   )
 }
