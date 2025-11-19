@@ -38,11 +38,11 @@ const ScrollableCategoryCarousel = ({ header, images, type }) => {
         </a>
       </div>
       <div className="carousel-scroll">
-        {images.map(({ id, images, title, price }) => (
+        {images.map(({ id, images, title, price, productId }) => (
 
           <div key={id} className="carousel-item">
 
-            <img src={imagesKey[`${images}.jpg`]} alt={title} className="carousel-image" onClick={() => navigateToProductDetails(id)} />
+            <img src={images[0]} alt={title} className="carousel-image" onClick={() => navigateToProductDetails(productId)} />
             <h3 className="carousel-title" title={title}>{title}</h3>
             <div className="price-addcart-container">
               <p className="carousel-price">₹{price.toFixed(2)}</p>

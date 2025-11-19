@@ -63,7 +63,7 @@ function StandardHeader({ cart }) {
                 <span onClick={() => applyFilter('salwarMaterial')}>Salwar materials</span>
                 <span onClick={() => applyFilter('readyToWear')}>Ready to wear</span>
                 <span onClick={() => applyFilter('bestSeller')}>Best Seller</span>
-                <span onClick={() => applyFilter('unique')}>Rare & Unique</span>
+                <span onClick={() => applyFilter('exclusive')}>Exclusive</span>
             </nav>
         </header>
     );

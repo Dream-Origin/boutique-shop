@@ -17,8 +17,6 @@ import OrderSuccess from './pages/OrderSuccess'
 import AppHeader from './components/AppHeader'
 import { useSelector } from 'react-redux'
 import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts'
-import AdminRoute from './admin/AdminRoute'
-import AdminLayout from './admin/AdminLayout'
 
 // Protected Route Component
 function ProtectedRoute({ children, isAuthenticated }) {
@@ -188,14 +186,7 @@ function App() {
           }
         />
         <Route path="/order-success" element={<OrderSuccess />} />
-        <Route
-          path="/admin/*"
-          element={
-            <AdminRoute user={{ name: "Admin", role: "admin" }}>
-              <AdminLayout /> {/* Wrap with admin layout or dashboard */}
-            </AdminRoute>
-          }
-        />
+        
       </Routes>
 
       <Notification

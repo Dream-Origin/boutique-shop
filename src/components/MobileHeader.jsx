@@ -11,7 +11,7 @@ const menuLinks = [
   { label: "Salwar materials", type: "salwarMaterial" },
   { label: "Ready to wear", type: "readyToWear" },
   { label: "Bestseller", type: "bestSeller" },
-  { label: "Rare & Unique", type: "unique" },
+  { label: "Exclusive", type: "exclusive" },
 ];
 const tabBarLinks = [
   { label: "SALWAR MATERIALS", icon: "👗", type: "salwarMaterial" },

@@ -10,9 +10,9 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishlist }) {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product.id}`} className="product-card-img-wrap">
+      <Link to={`/product/${product.productId}`} className="product-card-img-wrap">
         <img
-          src={imagesKey[`${product.images[0]}.jpg`]}
+          src={product.images[0]}
           alt={product.name}
           className="product-img"
           loading="lazy"

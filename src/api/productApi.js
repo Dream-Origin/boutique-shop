@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://tharagai.vercel.app/products";
+const API_BASE_URL = "https://tharagai-api.onrender.com/products";
 // const API_BASE_URL = "http://localhost:3002/products";
 
 export async function fetchProducts() {

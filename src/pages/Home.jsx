@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'
 import Carousel from '../components/Carousel'
@@ -13,11 +13,19 @@ import BoutiqueCard from '../components/BoutiqueCard'
 import HeroCard from '../components/HeroCard'
 import PriceFilterSection from '../components/PriceFilterSection'
 import GoogleReviews from "../components/GoogleReviews";
+import { fetchProducts } from '../redux/slices/productsSlice'
 
 
 function Home() {
 
   const [selectedPriceRange, setSelectedPriceRange] = React.useState();
+
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector((state) => state.products);
+  
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const newArrivalsImags = useSelector(selectProductsByCategory('newArrival'));
   const bestSellerImages = useSelector(selectProductsByCategory('bestSeller'));
@@ -91,10 +99,10 @@ function Home() {
 
       <section>
         <ScrollableCategoryCarousel
-          header="Rare & Unique"
+          header="Exclusive"
           images={uniqueImages}
           headerStyle={{ color: '#333' }}
-          type="unique"
+          type="exclusive"
         />
       </section>
 

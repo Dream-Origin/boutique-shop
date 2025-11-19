@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 import Breadcrumb from '../components/Breadcrumb'
@@ -17,13 +17,17 @@ import {
 import './Shop.css'
 import Pagination from '../components/Pagination'
 import FilterChip from '../components/FilterChip'
+import { fetchProducts } from '../redux/slices/productsSlice'
 
 
 function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const PRODUCTS_PER_PAGE = 12; // You can adjust this as needed
   const [page, setPage] = React.useState(1);
   const dispatch = useDispatch()
-
+  const { items, loading, error } = useSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
   // Get filtered products from Redux selector
   const filteredProducts = useSelector(selectFilteredProducts)
 
@@ -38,9 +42,9 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
   ]
 
   const categoryOptions = [
-    { id: 'all', name: 'All Categories' },
-    { id: 'ready-to-wear', name: 'Ready to Wear' },
-    { id: 'salwar-materials', name: 'Salwar Materials' }
+    { value: 'all', name: 'All Categories' },
+    { value: 'Ready to Wear', name: 'Ready to Wear' },
+    { value: 'Salwar Materials', name: 'Salwar Materials' }
   ]
 
   const filterOptions = {
@@ -61,12 +65,12 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
       { label: "Above - 2000", from: 2001, to: Infinity, value: "2000+" }
     ],
     booleanFilters: [
-      { key: 'budget', label: 'Budget', value: budget },
-      { key: 'premium', label: 'Premium', value: premium },
+      // { key: 'budget', label: 'Budget', value: budget },
+      // { key: 'premium', label: 'Premium', value: premium },
       { key: 'exclusive', label: 'Exclusive', value: exclusive },
-      { key: 'handpicked', label: 'Handpicked', value: handpicked },
+      // { key: 'handpicked', label: 'Handpicked', value: handpicked },
       { key: 'bestSeller', label: 'Best Seller', value: bestSeller },
-      { key: 'unique', label: 'Unique', value: unique },
+      // { key: 'unique', label: 'Unique', value: unique },
       { key: 'newArrival', label: 'New Arrival', value: newArrival }
     ]
   }
@@ -132,7 +136,7 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
   if (category && category !== "all") {
     selectedChips.push({
       key: "category",
-      label: categoryOptions.find(c => c.id === category)?.name || category,
+      label: categoryOptions.find(c => c.value === category)?.name || category,
       onRemove: () => dispatch(setCategory('all')),
     });
   }
@@ -330,8 +334,8 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
               <div className="category-filter">
                 <label>Category:</label>
                 <select className="filter-select" value={category} onChange={handleCategoryChange}>
-                  {categoryOptions.map(({ id, name }) => (
-                    <option key={id} value={id}>{name}</option>
+                  {categoryOptions.map(({ value, name }) => (
+                    <option key={value} value={value}>{name}</option>
                   ))}
                 </select>
               </div>
@@ -375,7 +379,7 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
               <div className="products-grid">
                 {paginatedProducts.map(product => (
                   <ProductCard
-                    key={product.id}
+                    key={product.productId}
                     product={product}
                     onAddToCart={onAddToCart}
                     onToggleWishlist={onToggleWishlist}

@@ -1,47 +1,41 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setCategory } from '../redux/slices/categorySlice';
 import newArrival from '../data/images/newArrival.png'
 import salwarMaterials from '../data/images/salwarMaterials.png'
 import bestSeller from '../data/images/bestSeller.png'
 import readyToWear from '../data/images/readyToWear.png'
 import unique from '../data/images/unique.png'
-import IMG_6393 from '../data/images/IMG_6393.jpg'
-import IMG_7545 from '../data/images/IMG_7545.jpg'
-import IMG_6824 from '../data/images/IMG_6824.jpg'
-import IMG_7439 from '../data/images/IMG_7439.jpg'
-import IMG_6626 from '../data/images/IMG_6626.jpg'
 import { useApplyHomeFilter } from '../hooks/useApplyHomeFilter';
 const categories = [
   {
     name: 'New Arrival',
     image: newArrival,
-    link: '/shop?category=New%20Arrival',
+    link: '/shop?category=newArrival',
     type: 'newArrival'
   },
   {
     name: 'Salwar Materials',
     image: salwarMaterials,
-    link: '/shop?category=Salwar%20Materials',
+    link: '/shop?category=salwarMaterial',
     type: 'salwarMaterial'
   },
   {
-    name: 'Rare and Unique',
+    name: 'Exclusive',
     image: unique,
-    link: '/shop?category=Rare%20and%20Unique',
-    type: 'unique'
+    link: '/shop?category=exclusive',
+    type: 'exclusive'
   },
   {
     name: 'Bestseller',
     image: bestSeller,
-    link: '/shop?category=Bestseller',
+    link: '/shop?category=bestSeller',
     type: 'bestSeller'
   },
   {
     name: 'Ready to wear',
     image: readyToWear,
-    link: '/shop?category=Bestseller',
+    link: '/shop?category=readyToWear',
     type: 'readyToWear'
   },
 ]

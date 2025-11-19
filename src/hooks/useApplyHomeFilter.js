@@ -14,10 +14,10 @@ export function useApplyHomeFilter() {
         dispatch(toggleBooleanFilter('newArrival'))
         break
       case 'salwarMaterial':
-        dispatch(setCategory('salwar-materials'))
+        dispatch(setCategory('Salwar Materials'))
         break
       case 'readyToWear':
-        dispatch(setCategory('ready-to-wear'))
+        dispatch(setCategory('Ready to Wear'))
         break
       case 'bestSeller':
         dispatch(toggleBooleanFilter('bestSeller'))
@@ -28,8 +28,14 @@ export function useApplyHomeFilter() {
       default:
         break
     }
-    navigate('/products')
+    if (filterType === 'salwarMaterial' || filterType === 'readyToWear') {
+      navigate('/products?attribute=' + filterType)
+    }
+    else {
+      navigate('/products?attribute=' + filterType)
+    }
   }
+
 
   return applyFilter
 }

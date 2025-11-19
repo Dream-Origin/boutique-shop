@@ -1,75 +1,121 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Breadcrumb from '../components/Breadcrumb'
 import { productsData } from '../data/products'
 import './ProductDetails.css'
 import { selectProductsById, selectProductsBySubCategoryName } from '../redux/selectors/productsSelectors'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useImages } from '../hooks/useImages';
 import ScrollableCategoryCarousel from '../components/ScrollableCategoryCarousel'
+import { fetchProducts } from '../redux/slices/productsSlice'
 
 function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
+  const dispatch = useDispatch()
+  const { items, loading, error } = useSelector((state) => state.products);
+  useEffect(() => {
+    // dispatch(fetchProducts());
+  }, [dispatch]);
   const imagesKey = useImages();
   const { id } = useParams()
   const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
   const product = useSelector(selectProductsById(id));
-  const relatedProducts = useSelector(selectProductsBySubCategoryName(product.subCategory)).filter(p => p.id !== product.id);
-  console.log('Related Products:', relatedProducts, product);
+  const relatedProducts = useSelector(selectProductsBySubCategoryName(product?.subCategory)).filter(p => p.productId !== product.productId);
   if (!product) {
     return (
-      <div className="shop-container">
-        <h2>Product not found</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/shop')}>
-          Back to Shop
-        </button>
+      <div className="no-product-container">
+        <div className="no-product-card">
+          <h2>Oops! Product not found</h2>
+          <p>We couldn’t find the product you’re looking for. Try exploring other items in our shop.</p>
+          <button className="btn btn-primary" onClick={() => navigate('/products')}>
+            Back to Product
+          </button>
+        </div>
       </div>
+
     )
   }
 
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
-    { label: 'Shop', path: '/shop' },
-    { label: product.name }
+    { label: 'Product', path: `/product/${product.productId}` },
+    { label: product.productId }
   ]
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      onAddToCart(product.id)
+      onAddToCart(product.productId)
     }
   }
 
 
   return (
     <div className="shop-container">
-      <Breadcrumb items={breadcrumbItems} />
+      <div className='shop-breadcrumb-div'>
+        <Breadcrumb items={breadcrumbItems} />
+        <h1 className="page-title">{product?.title}</h1>
+      </div>
 
       <div className="product-details">
         <div className="product-details-image">
-          {product && <img src={imagesKey[`${product?.images?.[0]}.jpg`]} alt={product.title} />}
+          {product && <img src={product?.images?.[0]} alt={product.title} />}
           <span className="product-badge">{product.badge}</span>
         </div>
 
         <div className="product-details-info">
           <div className="product-category">{product.subCategory}</div>
-          <h1 className="product-details-name">{product.title}</h1>
+          <h1 className="product-details-name">
+            {product.title}{" "}
+            {product.tags.includes("Hot Sale") && (
+              <sup className="product-details-tag-style">{product.tags?.[0]}</sup>
+            )}
+          </h1>
 
           <div className="product-rating">
             <span className="stars">
               {'★'.repeat(Math.floor(product.rating))}
               {'☆'.repeat(5 - Math.floor(product.rating))}
             </span>
-            <span className="rating-count">({product.reviews} reviews)</span>
+            {/* <span className="rating-count">({product.reviews} reviews)</span> */}
           </div>
 
           <div className="product-price">
-            <span className="current-price">{product.price}</span>
-            <span className="discount-badge">
-              {product.discountPercentage}% OFF
-            </span>
+            <span className="product-details-current-price">₹ {product.price}</span>
+            <span className="product-details-original-price">₹ {product.originalPrice}</span>
+            <span className="product-details-discount-badge">{product.discountPercentage}% OFF</span>
+          </div>
+
+          <div className="product-details-product-variants">
+            <div className="product-details-product-colors">
+              <strong>Colors:</strong>
+              {product.colors.map((color, index) => (
+                <span
+                  key={index}
+                  className="product-details-color-circle"
+                  style={{ backgroundColor: color.toLowerCase().replace(/\s+/g, '') }}
+                  title={color}
+                ></span>
+              ))}
+            </div>
+
+            <div className="product-details-product-sizes">
+              <strong>Sizes:</strong>
+              {product.sizes.map((size, index) => (
+                <span key={index} className="product-details-size-badge">
+                  {size}
+                </span>
+              ))}
+            </div>
+          </div>
+
+
+          <div className="product-description">
+            <b>Additional Details:</b>
+            <p>{product.details}</p>
           </div>
 
           <div className="product-description">
+            <b> Description:</b>
             <p>{product.description}</p>
           </div>
 
@@ -116,10 +162,10 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
           <div className="product-meta">
             <div className="meta-item">
-              <strong>SKU:</strong> FL-{product.id}
+              <strong>SKU:</strong> {product.productId}
             </div>
             <div className="meta-item">
-              <strong>Category:</strong> {product.category}
+              <strong>Fabric:</strong> {product.fabric}
             </div>
             <div className="meta-item">
               <strong>Availability:</strong> <span className="in-stock">In Stock</span>
@@ -130,16 +176,16 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
       {relatedProducts.length > 0 && (
         <div className="related-products">
-         
+
           {/* <div className="products-grid"> */}
-             <section>
-                <ScrollableCategoryCarousel
-                  header="Related Products"
-                  images={relatedProducts}
-                  headerStyle={{ color: '#333' }}
-                />
-              </section>
-            {/* {relatedProducts.map(product => (
+          <section>
+            <ScrollableCategoryCarousel
+              header="Related Products"
+              images={relatedProducts}
+              headerStyle={{ color: '#333' }}
+            />
+          </section>
+          {/* {relatedProducts.map(product => (
              
               <ProductCard
                   key={product.id}
