@@ -120,7 +120,7 @@
 
 /* Name: smaller, single line, clear */
 .product-name {
-  font-size: 1.4rem;
+  font-size: 16px;
   font-weight: 400;
   color: #222;
   margin: 3px 0 0px 0;
@@ -149,7 +149,7 @@
   display: inline-block;
   /* ensures block container does not force new line */
   color: #E70089;
-  font-size: 1.5rem;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.5px;
 
@@ -160,7 +160,7 @@
   border: none;
   background: #f7e8fb;
   color: #E70089;
-  font-size: 1.2rem;
+  font-size: 14px;
   font-weight: 500;
   padding: 9px 25px;
   border-radius: 0;

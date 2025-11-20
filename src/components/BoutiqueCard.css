@@ -50,24 +50,24 @@
 }
 
 .boutique_title {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
     color: #3d2b21;
     margin-bottom: 20px;
 }
 
 .boutique_description {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.7;
     color: #5a463a;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .boutique_title { font-size: 26px; }
-    .boutique_description { font-size: 16px; }
+    .boutique_title { font-size: 20px; }
+    .boutique_description { font-size: 14px; }
 }
 @media (max-width: 480px) {
-    .boutique_title { font-size: 22px; }
-    .boutique_description { font-size: 15px; line-height: 1.6; }
+    .boutique_title { font-size: 18px; }
+    .boutique_description { font-size: 13px; line-height: 1.6; }
 }

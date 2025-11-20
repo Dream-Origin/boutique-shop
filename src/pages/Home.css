@@ -78,7 +78,7 @@
 .category-circle-label {
   margin-top: var(--space-4);
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: var(--font-weight-bold);
   max-width: 120px;
   width: 100%;
@@ -102,7 +102,7 @@
     height: 86px;
   }
   .category-circle-label {
-    font-size: 14px;
+    font-size: 13px;
     max-width: 94px;
   }
 }
