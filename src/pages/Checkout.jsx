@@ -320,7 +320,7 @@ function Checkout({ cart, user }) {
                   <div className="checkout-item-qty">Qty: {item.quantity}</div>
                 </div>
                 <div className="checkout-item-price">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ₹{(item.price * item.quantity).toFixed(2)}
                 </div>
               </div>
             ))}

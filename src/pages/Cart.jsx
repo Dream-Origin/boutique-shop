@@ -48,7 +48,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
               <div className="cart-item-details">
                 <h3>{item.title}</h3>
                 <p className="cart-item-category">{item.category}</p>
-                <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                <p className="cart-item-price">₹{item.price.toFixed(2)}</p>
               </div>
               <div className="cart-item-quantity">
                 <div className="quantity-controls">
@@ -73,7 +73,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
                 </div>
               </div>
               <div className="cart-item-total">
-                ${(item.price * item.quantity).toFixed(2)}
+                ₹{(item.price * item.quantity).toFixed(2)}
               </div>
               <button
                 className="cart-item-remove"
@@ -94,20 +94,20 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
           <h2>Cart Summary</h2>
           <div className="summary-row">
             <span>Subtotal:</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>₹{subtotal.toFixed(2)}</span>
           </div>
           <div className="summary-row">
             <span>Shipping:</span>
-            <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+            <span>{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
           </div>
           {subtotal < 50 && (
             <p className="shipping-notice">
-              Add ${(50 - subtotal).toFixed(2)} more for free shipping!
+              Add ₹{(50 - subtotal).toFixed(2)} more for free shipping!
             </p>
           )}
           <div className="summary-row total">
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₹{total.toFixed(2)}</span>
           </div>
           <button
             className="btn btn-primary btn-full-width"
