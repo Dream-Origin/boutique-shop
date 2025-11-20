@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaEye, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaSearchPlus , FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './ProductCard.css';
 
 function ProductCard({ product, onAddToCart }) {
@@ -38,7 +38,7 @@ function ProductCard({ product, onAddToCart }) {
 
         {/* Eye icon */}
         <div className="eye-icon-overlay" onClick={() => openZoom(0)}>
-          <FaEye size={16} color="#fff" />
+          <FaSearchPlus  size={16} color="#fff" />
         </div>
 
         {product.unique && <span className="product-badge">Unique</span>}
