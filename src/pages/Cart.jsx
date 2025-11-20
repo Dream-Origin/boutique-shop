@@ -44,7 +44,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
         <div className="cart-items-section">
           {cart.map(item => (
             <div key={item.id} className="cart-item-row">
-              <img src={item.images[0]} alt={item.title} className="cart-item-image" />
+              <img src={item.images?.[0]} alt={item.title} className="cart-item-image" />
               <div className="cart-item-details">
                 <h3>{item.title}</h3>
                 <p className="cart-item-category">{item.category}</p>
