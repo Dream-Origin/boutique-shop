@@ -27,9 +27,15 @@ export const selectFilteredProducts = createSelector(
         'handpicked', 'bestSeller', 'unique', 'newArrival'
       ];
 
-      for (let key of booleanFilterKeys) {
-        if (filters[key] === true && !product[key]) return false;
+      const activeBooleanFilters = booleanFilterKeys.filter(key => filters[key]);
+      if (activeBooleanFilters.length > 0) {
+        const matchesAtLeastOne = activeBooleanFilters.some(key => product[key]);
+        if (!matchesAtLeastOne) return false; // Exclude if product matches none
       }
+
+      // for (let key of booleanFilterKeys) {
+      //   if (filters[key] === true && !product[key]) return false;
+      // }
 
       // Fabric (material) filter
       if (filters.fabrics?.length > 0 && !filters.fabrics.includes(product.material)) {

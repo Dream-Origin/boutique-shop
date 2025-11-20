@@ -48,7 +48,7 @@ const ScrollableCategoryCarousel = ({ header, images, type }) => {
               <p className="carousel-price">₹{price.toFixed(2)}</p>
               <button
                 className="carousel-add-to-cart-btn"
-                onClick={() => handleAddToCart(id)}
+                onClick={() => handleAddToCart(productId)}
                 aria-label={`Add ${title} to Cart`}
               >
                 Add to Cart
