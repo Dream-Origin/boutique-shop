@@ -54,7 +54,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
                 <div className="quantity-controls">
                   <button
                     className="qty-btn"
-                    onClick={() => onUpdateQuantity(item.id, -1)}
+                    onClick={() => onUpdateQuantity(item.productId, -1)}
                   >
                     -
                   </button>
@@ -66,7 +66,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
                   />
                   <button
                     className="qty-btn"
-                    onClick={() => onUpdateQuantity(item.id, 1)}
+                    onClick={() => onUpdateQuantity(item.productId, 1)}
                   >
                     +
                   </button>
@@ -77,7 +77,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
               </div>
               <button
                 className="cart-item-remove"
-                onClick={() => onRemoveFromCart(item.id)}
+                onClick={() => onRemoveFromCart(item.productId)}
               >
                 ✕
               </button>

@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--space-32);
+      margin: 0 10px;
 }
 
 .checkout-form {

@@ -78,20 +78,20 @@ function App() {
     showNotification(`${product.title} added to cart!`);
   }
 
-  const removeFromCart = (id) => {
-    setCart(cart.filter(item => item.id !== id));
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(item => item.productId !== productId));
     showNotification('Item removed from cart');
   }
 
-  const updateQuantity = (id, change) => {
-    const item = cart.find(item => item.id === id);
+  const updateQuantity = (productId, change) => {
+    const item = cart.find(item => item.productId === productId);
     if (item) {
       const newQuantity = item.quantity + change;
       if (newQuantity <= 0) {
-        removeFromCart(id);
+        removeFromCart(productId);
       } else {
         setCart(cart.map(item =>
-          item.id === id
+          item.productId === productId
             ? { ...item, quantity: newQuantity }
             : item
         ));
