@@ -14,11 +14,12 @@ import HeroCard from '../components/HeroCard'
 import PriceFilterSection from '../components/PriceFilterSection'
 import GoogleReviews from "../components/GoogleReviews";
 import { fetchProducts } from '../redux/slices/productsSlice'
+import { setPriceRange } from '../redux/slices/filterSlice'
 
 
 function Home({ onAddToCart }) {
 
-  console.log(onAddToCart)
+  const navigate = useNavigate()
   const [selectedPriceRange, setSelectedPriceRange] = React.useState();
 
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ function Home({ onAddToCart }) {
     if (selectedRange) {
       dispatch(setPriceRange({ from: selectedRange.from, to: selectedRange.to }));
       setSelectedPriceRange(value);
+      navigate('/products?priceRanges=' + `{from:${selectedRange.from},to:${selectedRange.to}}`)
     }
   };
 
