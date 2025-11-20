@@ -52,7 +52,7 @@ function ProductCard({ product, onAddToCart }) {
 
       <div className="product-meta-row">
         <div className="product-price">
-          ₹ {product.price.toLocaleString('en-IN')}
+          ₹ {product?.price}
         </div>
         <button
           className="btn-add-cart"

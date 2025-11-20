@@ -42,7 +42,7 @@ const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
             <img src={images[0]} alt={title} className="carousel-image" onClick={() => navigateToProductDetails(productId)} />
             <h3 className="carousel-title" title={title}>{title}</h3>
             <div className="price-addcart-container">
-              <p className="carousel-price">₹{price.toFixed(2)}</p>
+              <p className="carousel-price">₹{price}</p>
               <button
                 className="carousel-add-to-cart-btn"
                 onClick={() => onAddToCart(productId)}

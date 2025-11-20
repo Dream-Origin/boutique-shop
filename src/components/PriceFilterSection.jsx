@@ -38,7 +38,7 @@ export default function PriceFilterSection({ selected, onChange }) {
             aria-pressed={selected === opt.value}
           >
             <span className="price-card-label">{opt.label}</span>
-            <span className="price-card-sub">{opt.subtitle}</span>
+            {/* <span className="price-card-sub">{opt.subtitle}</span> */}
           </button>
         ))}
       </div>
