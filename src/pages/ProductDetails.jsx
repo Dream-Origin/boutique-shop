@@ -13,7 +13,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const dispatch = useDispatch()
   const { items, loading, error } = useSelector((state) => state.products);
   useEffect(() => {
-    // dispatch(fetchProducts());
+    dispatch(fetchProducts());
   }, [dispatch]);
   const imagesKey = useImages();
   const { id } = useParams()
@@ -71,13 +71,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
             )}
           </h1>
 
-          {/* <div className="product-rating">
-            <span className="stars">
-              {'★'.repeat(Math.floor(product.rating))}
-              {'☆'.repeat(5 - Math.floor(product.rating))}
-            </span>
-            <span className="rating-count">({product.reviews} reviews)</span>
-          </div> */}
+
 
           <div className="product-price">
             <span className="product-details-current-price">₹ {product.price}</span>
@@ -85,9 +79,20 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
             <span className="product-details-discount-badge">{product.discountPercentage}% OFF</span>
           </div>
 
+          {/* Savings info, if available */}
+          {product.originalPrice && product.price && product.discountPercentage && (
+            <div className="savings-info">
+              {`Saved ₹ ${(product.originalPrice - product.price).toLocaleString('en-IN')} (${product.discountPercentage}%) on this item when compared to the market price`}
+            </div>
+          )}
+          {/* Shipping or other notes */}
+          <div className="shipping-info">
+            <strong>Free Shipping</strong> on all orders
+          </div>
+
           <div className="product-details-product-variants">
             <div className="product-details-product-colors">
-              <strong>Colors:</strong>
+              <strong>Color:</strong>
               {product.colors.map((color, index) => (
                 <span
                   key={index}
@@ -98,14 +103,14 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               ))}
             </div>
 
-            <div className="product-details-product-sizes">
+            {/* <div className="product-details-product-sizes">
               <strong>Sizes:</strong>
               {product.sizes.map((size, index) => (
                 <span key={index} className="product-details-size-badge">
                   {size}
                 </span>
               ))}
-            </div>
+            </div> */}
           </div>
 
 
@@ -151,12 +156,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               >
                 Add to Cart
               </button>
-              {/* <button
-                className={`btn btn-secondary ${isInWishlist(product.id) ? 'in-wishlist' : ''}`}
-                onClick={() => onToggleWishlist(product.id)}
-              >
-                {isInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
-              </button> */}
+
             </div>
           </div>
 
@@ -177,7 +177,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
       {relatedProducts.length > 0 && (
         <div className="related-products">
 
-          {/* <div className="products-grid"> */}
+
           <section>
             <ScrollableCategoryCarousel
               header="Related Products"
@@ -185,28 +185,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               headerStyle={{ color: '#333' }}
             />
           </section>
-          {/* {relatedProducts.map(product => (
-             
-              <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={onAddToCart}
-                  onToggleWishlist={onToggleWishlist}
-                  isInWishlist={isInWishlist}
-                />
-              <div key={p.id} className="product-card" onClick={() => navigate(`/product/${p.id}`)}>
-                <div className="product-image">
-                  <img src={imagesKey[`${p.images?.[0]}.jpg`]} alt={p.name} />
-                </div>
-                <div className="product-info">
-                  <div className="product-name">{p.name}</div>
-                  <div className="product-price">
-                    <span className="current-price">${p.price.toFixed(2)}</span>
-                  </div>
-                </div>
-              </div>
-            ))} */}
-          {/* </div> */}
+
         </div>
       )}
     </div>

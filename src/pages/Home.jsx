@@ -74,9 +74,8 @@ function Home() {
       <section className="carousel-section">
         <Carousel images={carouselImages} autoPlay={true} interval={4000} />
       </section>
-      {/* <section className="">
-        <BoutiqueCard />
-      </section> */}
+
+      <BoutiqueCard />
 
       <section>
         <ScrollableCategoryCarousel
