@@ -135,7 +135,8 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
                   -
                 </button>
                 <input
-                  type="number"
+                 
+                  readOnly
                   className="qty-input"
                   value={quantity}
                   onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
