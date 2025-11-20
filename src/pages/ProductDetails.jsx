@@ -71,13 +71,13 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
             )}
           </h1>
 
-          <div className="product-rating">
+          {/* <div className="product-rating">
             <span className="stars">
               {'★'.repeat(Math.floor(product.rating))}
               {'☆'.repeat(5 - Math.floor(product.rating))}
             </span>
-            {/* <span className="rating-count">({product.reviews} reviews)</span> */}
-          </div>
+            <span className="rating-count">({product.reviews} reviews)</span>
+          </div> */}
 
           <div className="product-price">
             <span className="product-details-current-price">₹ {product.price}</span>
@@ -151,12 +151,12 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               >
                 Add to Cart
               </button>
-              <button
+              {/* <button
                 className={`btn btn-secondary ${isInWishlist(product.id) ? 'in-wishlist' : ''}`}
                 onClick={() => onToggleWishlist(product.id)}
               >
                 {isInWishlist(product.id) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
-              </button>
+              </button> */}
             </div>
           </div>
 

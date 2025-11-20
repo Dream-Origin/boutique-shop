@@ -21,7 +21,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishlist }) {
         {product.unique && <span className="product-badge">Unique</span>}
         {product.premium && <span className="product-badge">Premium</span>}
         {product.budget && <span className="product-badge">Budget</span>}
-        <button
+        {/* <button
           className={`wishlist-btn${isInWishlist(product.id) ? ' active' : ''}`}
           onClick={e => {
             e.preventDefault()
@@ -31,7 +31,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishlist }) {
           tabIndex={0}
         >
           {isInWishlist(product.id) ? '♥' : '♡'}
-        </button>
+        </button> */}
       </Link>
       <div className="product-name" title={product.title}>
         {product.title}
@@ -42,7 +42,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishlist }) {
         </div>
         <button
           className="btn-add-cart"
-          onClick={() => onAddToCart(product.id)}
+          onClick={() => onAddToCart(product.productId)}
         >
           Add to cart
         </button>

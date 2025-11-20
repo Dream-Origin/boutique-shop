@@ -22,14 +22,14 @@ function Home() {
 
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.products);
-  
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   const newArrivalsImags = useSelector(selectProductsByCategory('newArrival'));
   const bestSellerImages = useSelector(selectProductsByCategory('bestSeller'));
-  const uniqueImages = useSelector(selectProductsByCategory('unique'));
+  const exclusiveImages = useSelector(selectProductsByCategory('exclusive'));
 
   const carouselImages = [
     {
@@ -100,7 +100,7 @@ function Home() {
       <section>
         <ScrollableCategoryCarousel
           header="Exclusive"
-          images={uniqueImages}
+          images={exclusiveImages}
           headerStyle={{ color: '#333' }}
           type="exclusive"
         />

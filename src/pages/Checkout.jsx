@@ -7,7 +7,7 @@ import boutiqueLogo from '../data/images/logo.png';
 
 
 function Checkout({ cart, user }) {
-   const imagesKey = useImages();
+  const imagesKey = useImages();
 
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -61,11 +61,19 @@ function Checkout({ cart, user }) {
   const total = subtotal + shipping + tax
 
   // Convert to INR (assuming USD to INR = 83)
-  const totalInINR = Math.round(total * 83 * 100) // Convert to paise
+  const totalInINR = Math.round(total * 100) // Convert to paise
+
+  const totalOriginalPrice = cart.reduce(
+    (sum, item) => sum + item.originalPrice * item.quantity,
+    0
+  );
+
+
+  const youSave = totalOriginalPrice - subtotal;
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validate form
     if (!formData.firstName || !formData.email || !formData.phone || !formData.address) {
       alert('Please fill in all required fields')
@@ -96,12 +104,12 @@ function Checkout({ cart, user }) {
           // Payment successful
           console.log('Payment Success:', response)
           alert('Payment Successful! Payment ID: ' + response.razorpay_payment_id)
-          
+
           // Clear cart and redirect
-          navigate('/order-success', { 
-            state: { 
+          navigate('/order-success', {
+            state: {
               paymentId: response.razorpay_payment_id,
-              orderId: response.razorpay_order_id 
+              orderId: response.razorpay_order_id
             }
           })
         },
@@ -119,7 +127,7 @@ function Checkout({ cart, user }) {
           color: '#21808D' // Your brand color
         },
         modal: {
-          ondismiss: function() {
+          ondismiss: function () {
             setIsProcessing(false)
             alert('Payment cancelled')
           }
@@ -143,8 +151,11 @@ function Checkout({ cart, user }) {
 
   return (
     <div className="shop-container">
-      <Breadcrumb items={breadcrumbItems} />
-      <h1 className="page-title">Checkout</h1>
+      <div className='shop-breadcrumb-div'>
+        <Breadcrumb items={breadcrumbItems} />
+        <h1 className="page-title">Checkout </h1>
+      </div>
+
 
       <div className="checkout-page">
         {/* Checkout Form */}
@@ -277,8 +288,8 @@ function Checkout({ cart, user }) {
               </div>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary btn-full-width btn-large"
               disabled={isProcessing}
             >
@@ -299,11 +310,11 @@ function Checkout({ cart, user }) {
         {/* Order Summary */}
         <div className="checkout-summary">
           <h2>Order Summary</h2>
-          
+
           <div className="checkout-items">
             {cart.map(item => (
               <div key={item.id} className="checkout-item">
-                <img  src={imagesKey[`${item.images[0]}.jpg`]}  alt={item.title} />
+                <img src={item.images[0]} alt={item.title} />
                 <div className="checkout-item-info">
                   <div className="checkout-item-name">{item.title}</div>
                   <div className="checkout-item-qty">Qty: {item.quantity}</div>
@@ -318,22 +329,32 @@ function Checkout({ cart, user }) {
           <div className="summary-totals">
             <div className="summary-row">
               <span>Subtotal:</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
+
+            <div className="summary-row">
+              <span>You Save:</span>
+              <span style={{ color: 'green', fontWeight: '600' }}>
+                ₹{youSave.toFixed(2)}
+              </span>
+            </div>
+
             <div className="summary-row">
               <span>Shipping:</span>
-              <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`}</span>
             </div>
+
             <div className="summary-row">
               <span>Tax (10%):</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>₹{tax.toFixed(2)}</span>
             </div>
-            
+
             <div className="summary-row total">
               <span>Total (INR):</span>
               <span>₹{(totalInINR / 100).toFixed(2)}</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>

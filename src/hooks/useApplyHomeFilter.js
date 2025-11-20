@@ -22,8 +22,8 @@ export function useApplyHomeFilter() {
       case 'bestSeller':
         dispatch(toggleBooleanFilter('bestSeller'))
         break
-      case 'unique':
-        dispatch(toggleBooleanFilter('unique'))
+      case 'exclusive':
+        dispatch(toggleBooleanFilter('exclusive'))
         break
       default:
         break

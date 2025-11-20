@@ -63,19 +63,14 @@ function MobileHeader({ cart = [], wishlistCount = [] }) {
             <span className="icon-hamburger">&#9776;</span>
           )}
         </button>
-        <button className="header-icon" aria-label="Search">
-          <span role="img" aria-label="Search">🔍</span>
-        </button>
+       
         <div className="mobile-logo">
 
           <img src={boutiqueLogo} height="50" onClick={navigateToHome} />
 
 
         </div>
-        <button className="header-icon" aria-label="Wishlist">
-          <span role="img" aria-label="Wishlist">♡</span>
-          {wishlistCount > 0 && <span className="cart-badge">{wishlistCount}</span>}
-        </button>
+        
         <button className="header-icon" aria-label="Cart" onClick={navigateToCart}>
           <span role="img" aria-label="Cart">👜</span>
           {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}

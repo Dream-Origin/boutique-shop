@@ -31,14 +31,17 @@ console.log(cart)
 
   return (
     <div className="shop-container">
-      <Breadcrumb items={breadcrumbItems} />
-      <h1 className="page-title">Shopping Cart</h1>
+       <div className='shop-breadcrumb-div'>
+        <Breadcrumb items={breadcrumbItems} />
+        <h1 className="page-title">Shopping Cart</h1>
+      </div>
+
       
       <div className="cart-page">
         <div className="cart-items-section">
           {cart.map(item => (
             <div key={item.id} className="cart-item-row">
-              <img  src={imagesKey[`${item.images[0]}.jpg`]}  alt={item.title} className="cart-item-image" />
+              <img  src={item.images[0]}  alt={item.title} className="cart-item-image" />
               <div className="cart-item-details">
                 <h3>{item.title}</h3>
                 <p className="cart-item-category">{item.category}</p>

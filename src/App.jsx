@@ -62,15 +62,15 @@ function App() {
     setWishlist([])
     showNotification('Logged out successfully')
   }
-  const addToCart = (id) => {
+  const addToCart = (productId) => {
 
-    const product = filteredProducts.find(p => p.id === id);
+    const product = filteredProducts.find(p => p.productId === productId);
 
-    const existingItem = cart.find(item => item.id === id);
+    const existingItem = cart.find(item => item.productId === productId);
 
     if (existingItem) {
       setCart(cart.map(item =>
-        item.id === id
+        item.productId === productId
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ));
@@ -180,13 +180,16 @@ function App() {
         <Route
           path="/checkout"
           element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Checkout cart={cart} user={user} />
-            </ProtectedRoute>
+            // <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <Checkout
+              cart={cart}
+            // user={user} 
+            />
+            // </ProtectedRoute>
           }
         />
         <Route path="/order-success" element={<OrderSuccess />} />
-        
+
       </Routes>
 
       <Notification
