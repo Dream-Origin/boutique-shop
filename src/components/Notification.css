@@ -2,13 +2,13 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #E70089;
-  color: white;
+  background: #FFE6F5; /* light background */
+  color: #E70089; /* theme-colored text */
   padding: 14px 22px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
-  box-shadow: 0 6px 12px rgba(231, 0, 137, 0.5);
+  box-shadow: 0 6px 12px rgba(231, 0, 137, 0.25);
   opacity: 0;
   transform: translateY(-20px);
   pointer-events: none;
@@ -36,6 +36,8 @@
     font-size: 0.9rem;
     max-width: unset;
     border-radius: 8px;
+    background: #FFE6F5; /* keep same light bg */
+    color: #E70089; /* theme text */
     transform: translateY(20px);
   }
   .notification.show {

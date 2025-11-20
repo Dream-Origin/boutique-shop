@@ -16,8 +16,9 @@ import GoogleReviews from "../components/GoogleReviews";
 import { fetchProducts } from '../redux/slices/productsSlice'
 
 
-function Home() {
+function Home({ onAddToCart }) {
 
+  console.log(onAddToCart)
   const [selectedPriceRange, setSelectedPriceRange] = React.useState();
 
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ function Home() {
           images={newArrivalsImags}
           headerStyle={{ color: '#333' }}
           type="newArrival"
+          onAddToCart={onAddToCart}
         />
       </section>
 
@@ -93,6 +95,7 @@ function Home() {
           images={bestSellerImages}
           headerStyle={{ color: '#333' }}
           type="bestSeller"
+          onAddToCart={onAddToCart}
         />
       </section>
 
@@ -102,6 +105,7 @@ function Home() {
           images={exclusiveImages}
           headerStyle={{ color: '#333' }}
           type="exclusive"
+          onAddToCart={onAddToCart}
         />
       </section>
 

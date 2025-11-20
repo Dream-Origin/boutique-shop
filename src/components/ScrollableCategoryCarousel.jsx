@@ -6,16 +6,13 @@ import { useImages } from '../hooks/useImages';
 import { useApplyHomeFilter } from '../hooks/useApplyHomeFilter';
 import { useNavigate } from 'react-router-dom';
 
-const ScrollableCategoryCarousel = ({ header, images, type }) => {
+const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
   const imagesKey = useImages();
   const applyFilter = useApplyHomeFilter()
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart({ productId, quantity: 1 }));
-  };
-
+  
   const navigate = useNavigate()
 
   const navigateToProductDetails = (id) => {
@@ -48,8 +45,7 @@ const ScrollableCategoryCarousel = ({ header, images, type }) => {
               <p className="carousel-price">₹{price.toFixed(2)}</p>
               <button
                 className="carousel-add-to-cart-btn"
-                onClick={() => handleAddToCart(productId)}
-                aria-label={`Add ${title} to Cart`}
+                onClick={() => onAddToCart(productId)}
               >
                 Add to Cart
               </button>

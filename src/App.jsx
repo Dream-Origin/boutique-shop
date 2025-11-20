@@ -39,7 +39,6 @@ function App() {
   const isAuthenticated = !!user
 
   const showNotification = (message) => {
-    console.log(message)
     setNotification({ show: true, message })
     setTimeout(() => {
       setNotification({ show: false, message: '' })
@@ -63,7 +62,6 @@ function App() {
     showNotification('Logged out successfully')
   }
   const addToCart = (productId) => {
-
     const product = filteredProducts.find(p => p.productId === productId);
 
     const existingItem = cart.find(item => item.productId === productId);
@@ -133,7 +131,7 @@ function App() {
       {/* <AppHeader cart={cart} /> */}
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home onAddToCart={addToCart} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register onRegister={handleRegister} />} />
         <Route
