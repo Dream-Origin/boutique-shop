@@ -10,6 +10,7 @@ import ScrollableCategoryCarousel from '../components/ScrollableCategoryCarousel
 import { fetchProducts } from '../redux/slices/productsSlice'
 
 function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
+  const [selectedSize, setSelectedSize] = useState(null);
   const dispatch = useDispatch()
   const { items, loading, error } = useSelector((state) => state.products);
   useEffect(() => {
@@ -44,7 +45,10 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      onAddToCart(product.productId)
+      onAddToCart({
+        ...product,
+        size: selectedSize,
+      });
     }
   }
 
@@ -103,14 +107,23 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               ))}
             </div>
 
-            {/* <div className="product-details-product-sizes">
-              <strong>Sizes:</strong>
-              {product.sizes.map((size, index) => (
-                <span key={index} className="product-details-size-badge">
-                  {size}
-                </span>
-              ))}
-            </div> */}
+            {product?.subCategory === "Ready to Wear" && (
+              <div className="product-details-product-sizes">
+                <strong>Sizes:</strong>
+
+                {product.sizes.map((size, index) => (
+                  <span
+                    key={index}
+                    className={`product-details-size-badge ${selectedSize === size ? "product-details-size-badge-selected" : ""
+                      }`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </span>
+                ))}
+              </div>
+            )}
+
           </div>
 
 
@@ -135,7 +148,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
                   -
                 </button>
                 <input
-                 
+
                   readOnly
                   className="qty-input"
                   value={quantity}

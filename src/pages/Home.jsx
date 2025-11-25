@@ -120,11 +120,11 @@ function Home({ onAddToCart }) {
 
       </section>
 
-      <section>
+      {/* <section>
         <GoogleReviews />
-      </section>
+      </section> */}
 
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       {/* Features Section */}
 
     </>

@@ -2,7 +2,7 @@
 
 .shop-layout {
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 310px 1fr;
   gap: var(--space-32);
   margin-top: var(--space-24);
 }
@@ -17,6 +17,7 @@
   border-radius: var(--radius-lg);
   padding: var(--space-24);
   height: 100vh;
+  width: 300px;
   position: sticky;
   top: 100px;
   overflow: auto;
@@ -135,12 +136,12 @@
 }
 
 .btn-apply {
-  padding: var(--space-12) var(--space-24);
+  padding: var(--space-12);
   background: var(--color-primary);
   color: var(--color-btn-primary-text);
   border: none;
   border-radius: var(--radius-base);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: background 0.2s;
@@ -237,7 +238,6 @@
     top: 0;
     left: -100%;
     width: 100%;
-    max-width: 400px;
     height: 100vh;
     z-index: 270;
     overflow-y: auto;

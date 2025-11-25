@@ -17,6 +17,10 @@ import OrderSuccess from './pages/OrderSuccess'
 import AppHeader from './components/AppHeader'
 import { useSelector } from 'react-redux'
 import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts'
+import GoogleReviews from "./components/GoogleReviews";
+import FeaturesSection from './components/FeaturesSection'
+import CustomerSupportPage from './pages/CustomerSupportPage'
+
 
 // Protected Route Component
 function ProtectedRoute({ children, isAuthenticated }) {
@@ -61,10 +65,10 @@ function App() {
     setWishlist([])
     showNotification('Logged out successfully')
   }
-  const addToCart = (productId) => {
-    const product = filteredProducts.find(p => p.productId === productId);
+  const addToCart = (product) => {
+    // const product = filteredProducts.find(p => p.productId === productId);
 
-    const existingItem = cart.find(item => item.productId === productId);
+    const existingItem = cart.find(item => item.productId == product?.productId);
 
     if (existingItem) {
       setCart(cart.map(item =>
@@ -187,9 +191,12 @@ function App() {
           }
         />
         <Route path="/order-success" element={<OrderSuccess />} />
-
+        <Route path="/customer-support" element={<CustomerSupportPage />} />
       </Routes>
-
+      <section>
+        <GoogleReviews />
+      </section>
+      <FeaturesSection />
       <Notification
         show={notification.show}
         message={notification.message}

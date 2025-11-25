@@ -12,7 +12,7 @@ const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
 
   const dispatch = useDispatch();
 
-  
+
   const navigate = useNavigate()
 
   const navigateToProductDetails = (id) => {
@@ -35,17 +35,17 @@ const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
         </a>
       </div>
       <div className="carousel-scroll">
-        {images.map(({ id, images, title, price, productId }) => (
+        {images.map((product) => (
 
-          <div key={id} className="carousel-item">
+          <div key={product?.productId} className="carousel-item">
 
-            <img src={images[0]} alt={title} className="carousel-image" onClick={() => navigateToProductDetails(productId)} />
-            <h3 className="carousel-title" title={title}>{title}</h3>
+            <img src={product?.images[0]} alt={product?.title} className="carousel-image" onClick={() => navigateToProductDetails(product?.productId)} />
+            <h3 className="carousel-title" title={product?.title}>{product?.title}</h3>
             <div className="price-addcart-container">
-              <p className="carousel-price">₹{price}</p>
+              <p className="carousel-price">₹{product?.price}</p>
               <button
                 className="carousel-add-to-cart-btn"
-                onClick={() => onAddToCart(productId)}
+                onClick={() => onAddToCart(product)}
               >
                 Add to Cart
               </button>

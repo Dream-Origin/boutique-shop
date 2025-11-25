@@ -8,7 +8,7 @@ function Footer() {
         <div className="footer-section">
           <h3>About Tharagai Boutique</h3>
           <p style={{ color: 'var(--color-text-secondary)' }}>
-           Tharagai Boutique in Hosur offers premium quality sarees, salwar materials, and handcrafted fabrics sourced from across India. Known for exquisite designs and superior craftsmanship, it provides an exclusive collection that blends tradition with modern style. Visit us at Amman Nagar, Dinnur, Hosur for authentic, handpicked attire and personalized service.
+            Tharagai Boutique in Hosur offers premium quality sarees, salwar materials, and handcrafted fabrics sourced from across India. Known for exquisite designs and superior craftsmanship, it provides an exclusive collection that blends tradition with modern style. Visit us at Amman Nagar, Dinnur, Hosur for authentic, handpicked attire and personalized service.
 
 
           </p>
@@ -16,19 +16,19 @@ function Footer() {
         <div className="footer-section">
           <h3>Quick Links</h3>
           <ul>
-            <li><Link to="/shop">Shop</Link></li>
+            <li><Link to="/products">Products</Link></li>
             <li><Link to="/cart">Cart</Link></li>
-            <li><Link to="/wishlist">Wishlist</Link></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>Contact - +919345032317 </li>
           </ul>
         </div>
         <div className="footer-section">
           <h3>Customer Service</h3>
           <ul>
-            <li><a href="#shipping">Shipping Info</a></li>
-            <li><a href="#returns">Returns</a></li>
-            <li><a href="#terms">Terms & Conditions</a></li>
-            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><Link to="/customer-support">Shipping Info</Link></li>
+            <li><Link to="/customer-support">Returns</Link></li>
+            <li><Link to="/customer-support">Terms & Conditions</Link></li>
+            <li><Link to="/customer-support">Privacy Policy</Link></li>
+
           </ul>
         </div>
         <div className="footer-section">
@@ -46,7 +46,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-          &copy; 2026 Tharagai Boutique. All rights reserved.
+        &copy; 2026 Tharagai Boutique. All rights reserved.
       </div>
     </footer>
   )
