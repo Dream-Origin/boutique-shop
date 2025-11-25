@@ -16,8 +16,10 @@ function Footer() {
         <div className="footer-section">
           <h3>Quick Links</h3>
           <ul>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/cart">Cart</Link></li>
+            <li><Link to="/my-orders">My Orders</Link></li>
             <li>Contact - +919345032317 </li>
           </ul>
         </div>
@@ -42,7 +44,7 @@ function Footer() {
             placeholder="Your email"
             style={{ marginBottom: '12px', width: '100%' }}
           />
-          <button className="btn btn-primary" style={{ width: '100%' }}>Subscribe</button>
+          <button className="btn btn-primary" style={{ width: '100%' }} disabled>Subscribe</button>
         </div>
       </div>
       <div className="footer-bottom">

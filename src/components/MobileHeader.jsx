@@ -45,9 +45,13 @@ function MobileHeader({ cart = [], wishlistCount = [] }) {
   const navigateToHome = () => {
     navigate('/')
   }
-   const navigateToCart = () => {
-        navigate('/cart')
-    }
+  const navigateToCart = () => {
+    navigate('/cart')
+  }
+  const navigateToOrders = () => {
+    navigate('/my-orders')
+  }
+
 
   return (
     <>
@@ -63,14 +67,14 @@ function MobileHeader({ cart = [], wishlistCount = [] }) {
             <span className="icon-hamburger">&#9776;</span>
           )}
         </button>
-       
+
         <div className="mobile-logo">
 
           <img src={boutiqueLogo} height="50" onClick={navigateToHome} />
 
 
         </div>
-        
+
         <button className="header-icon" aria-label="Cart" onClick={navigateToCart}>
           <span role="img" aria-label="Cart">👜</span>
           {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
@@ -89,9 +93,11 @@ function MobileHeader({ cart = [], wishlistCount = [] }) {
         tabIndex={menuOpen ? 0 : -1}
       >
         <nav className="mobile-menu-list" aria-label="Main menu">
+          <span onClick={navigateToHome}>Home</span>
           {menuLinks.map(link => (
             <span key={link.label} onClick={() => { applyFilter(link.type); setMenuOpen(false); }}>{link.label}</span>
           ))}
+          <span onClick={navigateToOrders}>My Orders</span>
         </nav>
         <div className="mobile-tab-bar">
           {tabBarLinks.map(tab => (

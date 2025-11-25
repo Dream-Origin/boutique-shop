@@ -16,7 +16,9 @@ function StandardHeader({ cart }) {
     const navigateToCart = () => {
         navigate('/cart')
     }
-
+    const navigateToOrders = () => {
+        navigate('/my-orders')
+    }
 
     return (
         <header className="standard-header">
@@ -54,11 +56,14 @@ function StandardHeader({ cart }) {
                 </div>
             </div>
             <nav className="header-categories-row">
+                <span onClick={navigateToHome}>Home</span>
                 <span onClick={() => applyFilter('newArrival')}>New Arrivals</span>
                 <span onClick={() => applyFilter('salwarMaterial')}>Salwar materials</span>
                 <span onClick={() => applyFilter('readyToWear')}>Ready to wear</span>
                 <span onClick={() => applyFilter('bestSeller')}>Best Seller</span>
                 <span onClick={() => applyFilter('exclusive')}>Exclusive</span>
+                <span onClick={() => applyFilter('exclusive')}>Exclusive</span>
+                <span onClick={navigateToOrders}>My Orders</span>
             </nav>
         </header>
     );

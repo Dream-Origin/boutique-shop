@@ -6,15 +6,25 @@ import { useImages } from '../hooks/useImages';
 import './Cart.css'
 function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
   const imagesKey = useImages();
-  const navigate = useNavigate()
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
-  const shipping = subtotal > 50 ? 0 : 10
-  const total = subtotal + shipping
-  console.log(cart)
+  const navigate = useNavigate();
+
+  // Calculate subtotal
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  const totalOriginalPrice = cart.reduce(
+    (sum, item) => sum + item.originalPrice * item.quantity,
+    0
+  );
+  const youSave = totalOriginalPrice - subtotal;
+
+
+  const shipping = subtotal - youSave > 500 ? 0 : 10;
+  const total = subtotal;
+
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
     { label: 'Cart' }
-  ]
+  ];
 
   if (cart.length === 0) {
     return (
@@ -29,7 +39,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
           <Link to="/products" className="btn btn-primary">Continue Shopping</Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -39,7 +49,6 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
         <h1 className="page-title">Shopping Cart</h1>
       </div>
 
-
       <div className="cart-page">
         <div className="cart-items-section">
           {cart.map(item => (
@@ -48,7 +57,16 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
               <div className="cart-item-details">
                 <h3>{item.title}</h3>
                 <p className="cart-item-category">{item.category}</p>
-                <p className="cart-item-price">₹{item.price.toFixed(2)}</p>
+                <p className="cart-item-price">
+                  {item.discountedPrice ? (
+                    <>
+                      <span className="original-price">₹{item.price.toFixed(2)}</span>
+                      <span className="discounted-price"> ₹{item.discountedPrice.toFixed(2)}</span>
+                    </>
+                  ) : (
+                    `₹${item.price.toFixed(2)}`
+                  )}
+                </p>
               </div>
               <div className="cart-item-quantity">
                 <div className="quantity-controls">
@@ -73,7 +91,7 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
                 </div>
               </div>
               <div className="cart-item-total">
-                ₹{(item.price * item.quantity).toFixed(2)}
+                ₹{((item.discountedPrice || item.price) * item.quantity).toFixed(2)}
               </div>
               <button
                 className="cart-item-remove"
@@ -96,13 +114,25 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
             <span>Subtotal:</span>
             <span>₹{subtotal.toFixed(2)}</span>
           </div>
+          {youSave > 0 && (
+            <>
+              <div className="summary-row">
+
+                <span>You Save:</span>
+                <span style={{ color: 'green', fontWeight: '600' }}>
+                  ₹{youSave.toFixed(2)}
+                </span>
+              </div>
+              
+            </>
+          )}
           <div className="summary-row">
             <span>Shipping:</span>
-            <span>{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
+            <span>{subtotal - youSave > 50 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
           </div>
-          {subtotal < 50 && (
+          {subtotal - youSave < 50 && (
             <p className="shipping-notice">
-              Add ₹{(50 - subtotal).toFixed(2)} more for free shipping!
+              Add ₹{(50 - (subtotal - youSave)).toFixed(2)} more for free shipping!
             </p>
           )}
           <div className="summary-row total">
@@ -118,7 +148,8 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
+
 
 export default Cart
