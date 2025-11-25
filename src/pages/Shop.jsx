@@ -20,6 +20,7 @@ import FilterChip from '../components/FilterChip'
 import { fetchProducts } from '../redux/slices/productsSlice'
 import { useSearchParams } from "react-router-dom";
 import useFilterUrlSync from '../hooks/useFilterUrlSync'
+import ProductSkeleton from '../components/ProductSkeleton'
 
 
 function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
@@ -384,32 +385,39 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
           )}
 
 
-          {filteredProducts.length > 0 ? (
-            <>
-              <div className="products-grid">
-                {paginatedProducts.map(product => (
-                  <ProductCard
-                    key={product.productId}
-                    product={product}
-                    onAddToCart={onAddToCart}
-                    onToggleWishlist={onToggleWishlist}
-                    isInWishlist={isInWishlist}
-                  />
-                ))}
+
+          {loading ? <div className="products-grid">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <ProductSkeleton key={i} />
+            ))}
+          </div>
+            :
+            filteredProducts.length > 0 ? (
+              <>
+                <div className="products-grid">
+                  {paginatedProducts.map(product => (
+                    <ProductCard
+                      key={product.productId}
+                      product={product}
+                      onAddToCart={onAddToCart}
+                      onToggleWishlist={onToggleWishlist}
+                      isInWishlist={isInWishlist}
+                    />
+                  ))}
+                </div>
+                <Pagination
+                  page={page}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </>
+            ) : (
+              <div className="empty-state">
+                <h2>No products found</h2>
+                <p>Try adjusting your filters or search query.</p>
+                <button className="btn btn-primary" onClick={handleClearAll}>Clear All Filters</button>
               </div>
-              <Pagination
-                page={page}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
-            </>
-          ) : (
-            <div className="empty-state">
-              <h2>No products found</h2>
-              <p>Try adjusting your filters or search query.</p>
-              <button className="btn btn-primary" onClick={handleClearAll}>Clear All Filters</button>
-            </div>
-          )}
+            )}
         </main>
       </div>
     </div>

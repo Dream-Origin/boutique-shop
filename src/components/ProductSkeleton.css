@@ -1,0 +1,62 @@
+.product-skeleton {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* SHIMMER BASE */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+/* SHIMMER ANIMATION */
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    left: -150px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* Skeleton element sizes */
+.skeleton-img {
+  width: 100%;
+  height: 280px;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 90%;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+
+.skeleton-price {
+  height: 18px;
+  width: 40%;
+}

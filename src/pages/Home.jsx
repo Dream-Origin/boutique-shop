@@ -15,6 +15,7 @@ import PriceFilterSection from '../components/PriceFilterSection'
 import GoogleReviews from "../components/GoogleReviews";
 import { fetchProducts } from '../redux/slices/productsSlice'
 import { setPriceRange } from '../redux/slices/filterSlice'
+import HorizontalProductSkeleton from '../components/HorizontalProductSkeleton'
 
 
 function Home({ onAddToCart }) {
@@ -81,34 +82,55 @@ function Home({ onAddToCart }) {
       <BoutiqueCard />
 
       <section>
-        <ScrollableCategoryCarousel
-          header="New Arrivals"
-          images={newArrivalsImags}
-          headerStyle={{ color: '#333' }}
-          type="newArrival"
-          onAddToCart={onAddToCart}
-        />
+        {loading ? (
+          <div className="scrollable-carousel">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <HorizontalProductSkeleton key={i} />
+            ))}
+          </div>) :
+
+          (<ScrollableCategoryCarousel
+            header="New Arrivals"
+            images={newArrivalsImags}
+            headerStyle={{ color: '#333' }}
+            type="newArrival"
+            onAddToCart={onAddToCart}
+          />)}
       </section>
 
 
       <section>
-        <ScrollableCategoryCarousel
-          header="Bestseller"
-          images={bestSellerImages}
-          headerStyle={{ color: '#333' }}
-          type="bestSeller"
-          onAddToCart={onAddToCart}
-        />
+        {loading ? (
+          <div className="scrollable-carousel">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <HorizontalProductSkeleton key={i} />
+            ))}
+          </div>) :
+
+          (<ScrollableCategoryCarousel
+            header="Bestseller"
+            images={bestSellerImages}
+            headerStyle={{ color: '#333' }}
+            type="bestSeller"
+            onAddToCart={onAddToCart}
+          />)}
       </section>
 
       <section>
-        <ScrollableCategoryCarousel
-          header="Exclusive"
-          images={exclusiveImages}
-          headerStyle={{ color: '#333' }}
-          type="exclusive"
-          onAddToCart={onAddToCart}
-        />
+        {loading ? (
+          <div className="scrollable-carousel">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <HorizontalProductSkeleton key={i} />
+            ))}
+          </div>) :
+
+          (<ScrollableCategoryCarousel
+            header="Exclusive"
+            images={exclusiveImages}
+            headerStyle={{ color: '#333' }}
+            type="exclusive"
+            onAddToCart={onAddToCart}
+          />)}
       </section>
 
 
