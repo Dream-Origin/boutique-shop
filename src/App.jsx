@@ -20,6 +20,7 @@ import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts
 import GoogleReviews from "./components/GoogleReviews";
 import FeaturesSection from './components/FeaturesSection'
 import CustomerSupportPage from './pages/CustomerSupportPage'
+import MyOrders from './pages/MyOrders'
 
 
 // Protected Route Component
@@ -191,6 +192,7 @@ function App() {
           }
         />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/my-orders" element={<MyOrders />} />
         <Route path="/customer-support" element={<CustomerSupportPage />} />
       </Routes>
       <section>
