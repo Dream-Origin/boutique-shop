@@ -18,16 +18,21 @@ import './Shop.css'
 import Pagination from '../components/Pagination'
 import FilterChip from '../components/FilterChip'
 import { fetchProducts } from '../redux/slices/productsSlice'
+import { useSearchParams } from "react-router-dom";
+import useFilterUrlSync from '../hooks/useFilterUrlSync'
 
 
 function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const PRODUCTS_PER_PAGE = 12; // You can adjust this as needed
   const [page, setPage] = React.useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch()
   const { items, loading, error } = useSelector((state) => state.products);
+  useFilterUrlSync();
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
   // Get filtered products from Redux selector
   const filteredProducts = useSelector(selectFilteredProducts)
 
@@ -108,7 +113,12 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
   const handleSortChange = (e) => dispatch(setSortOrder(e.target.value))
 
-  const handleClearAll = () => dispatch(clearAllFilters())
+
+  const handleClearAll = () => {
+    dispatch(clearAllFilters());
+    setSearchParams({});
+  };
+
 
   // Assume showFilters UI state locally for filter sidebar toggle
   const [showFilters, setShowFilters] = React.useState(false)

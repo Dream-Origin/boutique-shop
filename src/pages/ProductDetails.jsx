@@ -106,6 +106,12 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
                 ></span>
               ))}
             </div>
+            {product.fabric && <div>
+              <strong>Fabric: </strong>
+              <span>{product.fabric}</span>
+
+            </div>
+            }
 
             {product?.subCategory === "Ready to Wear" && (
               <div className="product-details-product-sizes">
