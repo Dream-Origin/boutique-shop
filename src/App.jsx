@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -21,6 +21,7 @@ import GoogleReviews from "./components/GoogleReviews";
 import FeaturesSection from './components/FeaturesSection'
 import CustomerSupportPage from './pages/CustomerSupportPage'
 import MyOrders from './pages/MyOrders'
+import ConfirmModal from './components/ConfirmModal'
 
 
 // Protected Route Component
@@ -35,13 +36,22 @@ function ProtectedRoute({ children, isAuthenticated }) {
 }
 
 function App() {
-  const [cart, setCart] = useState([])
+  // const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [wishlist, setWishlist] = useState([])
+  const [showConfirm, setShowConfirm] = useState(false);
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState({ show: false, message: '' })
   const filteredProducts = useSelector(selectFilteredProducts)
   const isAdminRoute = location.pathname.startsWith('/admin')
   const isAuthenticated = !!user
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const showNotification = (message) => {
     setNotification({ show: true, message })
@@ -66,27 +76,53 @@ function App() {
     setWishlist([])
     showNotification('Logged out successfully')
   }
-  const addToCart = (product) => {
-    // const product = filteredProducts.find(p => p.productId === productId);
+  // const addToCart = (product) => {
+  //   // const product = filteredProducts.find(p => p.productId === productId);
 
-    const existingItem = cart.find(item => item.productId == product?.productId);
+  //   const existingItem = cart.find(item => item.productId == product?.productId);
+
+  //   if (existingItem) {
+  //     setCart(cart.map(item =>
+  //       item.productId === productId
+  //         ? { ...item, quantity: item.quantity + 1 }
+  //         : item
+  //     ));
+  //   } else {
+  //     setCart([...cart, { ...product, quantity: 1 }]);
+  //   }
+  //   showNotification(`${product.title} added to cart!`);
+  // }
+
+  const addToCart = (product) => {
+    const existingItem = cart.find(item => item.productId === product.productId);
 
     if (existingItem) {
-      setCart(cart.map(item =>
-        item.productId === productId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
+      setCart(
+        cart.map(item =>
+          item.productId === product.productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+      showNotification(`${product.title} added to cart!`);
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+
     showNotification(`${product.title} added to cart!`);
-  }
+  };
+
+
+  // const removeFromCart = (productId) => {
+  //   setCart(cart.filter(item => item.productId !== productId));
+  //   showNotification('Item removed from cart');
+  // }
 
   const removeFromCart = (productId) => {
     setCart(cart.filter(item => item.productId !== productId));
-    showNotification('Item removed from cart');
-  }
+    showNotification("Item removed from cart");
+  };
+
 
   const updateQuantity = (productId, change) => {
     const item = cart.find(item => item.productId === productId);
@@ -105,11 +141,24 @@ function App() {
   }
 
   const clearCart = () => {
-    if (window.confirm('Are you sure you want to clear the cart?')) {
-      setCart([]);
-      showNotification('Cart cleared!');
-    }
-  }
+    setShowConfirm(true);
+  };
+
+  const handleConfirmClear = () => {
+    setCart([]);
+    setShowConfirm(false);
+    showNotification("Cart cleared!");
+  };
+
+  const handleCancelClear = () => {
+    setShowConfirm(false);
+  };
+  // const clearCart = () => {
+  //   if (window.confirm('Are you sure you want to clear the cart?')) {
+  //     setCart([]);
+  //     showNotification('Cart cleared!');
+  //   }
+  // }
 
   const toggleWishlist = (id) => {
     const product = filteredProducts.find(p => p.id === id);
@@ -205,6 +254,12 @@ function App() {
       />
       {isAdminRoute ? <br /> : <Footer />}
       {/* <Footer /> */}
+      <ConfirmModal
+        open={showConfirm}
+        message="Do you really want to clear your entire cart?"
+        onConfirm={handleConfirmClear}
+        onCancel={handleCancelClear}
+      />
     </>
   )
 }
