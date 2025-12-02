@@ -9,6 +9,7 @@ import FeaturesSection from '../components/FeaturesSection'
 import CategoriesSection from '../components/CategoriesSection';
 import banner1 from '../data/images/banner1.png';
 import banner2 from '../data/images/banner2.png';
+import banner3 from '../data/images/banner3.png';
 import BoutiqueCard from '../components/BoutiqueCard'
 import HeroCard from '../components/HeroCard'
 import PriceFilterSection from '../components/PriceFilterSection'
@@ -36,17 +37,17 @@ function Home({ onAddToCart }) {
 
   const carouselImages = [
     {
-      url: banner1,
+      url: banner3,
       alt: 'Women Fashion Collection',
       caption: 'New Women Collection',
       description: 'Discover the latest trends'
     },
-    {
-      url: banner2,
-      alt: 'Women Fashion Collection',
-      caption: 'New Women Collection',
-      description: 'Discover the latest trends'
-    },
+    // {
+    //   url: banner2,
+    //   alt: 'Women Fashion Collection',
+    //   caption: 'New Women Collection',
+    //   description: 'Discover the latest trends'
+    // },
 
   ]
 
