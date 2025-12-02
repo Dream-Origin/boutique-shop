@@ -7,9 +7,10 @@
   margin-top: var(--space-24);
 }
 
-.shop-breadcrumb-div{
+.shop-breadcrumb-div {
   text-align: center;
 }
+
 /* Filter Sidebar */
 .filter-sidebar {
   background: var(--color-surface);
@@ -176,6 +177,8 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: end;
+  margin-bottom: 8px;
+
 }
 
 .search-input {
@@ -223,7 +226,7 @@
     padding: var(--space-16);
   }
 
-  
+
 }
 
 /* Mobile Responsive - below 768px */
@@ -382,6 +385,7 @@
     padding: 11px 4px 11px 2px;
     margin-bottom: 3px;
   }
+
   .shop-bar-label,
   .shop-bar-count {
     font-size: 0.97rem;

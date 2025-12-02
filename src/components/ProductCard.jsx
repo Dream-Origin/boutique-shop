@@ -73,18 +73,25 @@ function ProductCard({ product, onAddToCart }) {
       </div>
 
       {/* Sizes inline (optional) */}
-      {product.subCategory === "Ready to Wear" && selectedSize && (
+      {/* {product.subCategory === "Ready to Wear" && selectedSize && (
         <div className="selected-size-display">
           Selected size: <strong>{selectedSize}</strong>
         </div>
-      )}
+      )} */}
 
       <div className="product-meta-row">
         <div className="product-price">₹ {product?.price}</div>
 
-        <button className="btn-add-cart" onClick={handleAddToCart}>
-          Add to cart
-        </button>
+        {product?.stock <= 0 ?
+          <button className="btn-add-cart">
+            Out of Stock
+          </button>
+
+          :
+          <button className="btn-add-cart" onClick={handleAddToCart}>
+            Add to cart
+          </button>}
+
       </div>
 
       {/* Zoom modal */}

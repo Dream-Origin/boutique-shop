@@ -173,8 +173,8 @@
 
 .btn-add-cart:hover,
 .btn-add-cart:focus-visible {
-  background: #e6bbf7;
-  color: #74079f;
+  background: #E70089;
+  color: #fff;
   box-shadow: 0 2px 6px rgba(162, 29, 203, 0.08);
 }
 

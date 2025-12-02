@@ -170,12 +170,20 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
             </div>
 
             <div className="action-buttons">
-              <button
-                className="btn btn-primary btn-large"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </button>
+
+              {product?.stock <= 0 ?
+                <button
+                  className="btn btn-primary btn-large"
+                >
+                  Out of Stock
+                </button>
+                :
+                <button
+                  className="btn btn-primary btn-large"
+                  onClick={handleAddToCart}
+                >
+                  Add to Cart
+                </button>}
 
             </div>
           </div>
@@ -188,7 +196,11 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               <strong>Fabric:</strong> {product.fabric}
             </div>
             <div className="meta-item">
-              <strong>Availability:</strong> <span className="in-stock">In Stock</span>
+              {product.stock <= 0 ?
+                <>
+                  <strong>Availability:</strong> <span className="out-stock">Out of Stock</span></>
+                :
+                <><strong>Availability:</strong> <span className="in-stock">In Stock</span></>}
             </div>
           </div>
         </div>

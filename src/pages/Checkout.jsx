@@ -59,7 +59,8 @@ function Checkout({ cart, user }) {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
   const shipping = subtotal > 50 ? 0 : 5.99
   const tax = subtotal * 0.1 // 10% tax
-  const total = subtotal + shipping + tax
+  // const total = subtotal + shipping + tax
+  const total = subtotal + shipping
 
   // Convert to INR (assuming USD to INR = 83)
   const totalInINR = Math.round(total * 100) // Convert to paise
@@ -386,10 +387,10 @@ const handleSubmit = async (e) => {
               <span>{shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`}</span>
             </div>
 
-            <div className="summary-row">
+            {/* <div className="summary-row">
               <span>Tax (10%):</span>
               <span>₹{tax.toFixed(2)}</span>
-            </div>
+            </div> */}
 
             <div className="summary-row total">
               <span>Total (INR):</span>

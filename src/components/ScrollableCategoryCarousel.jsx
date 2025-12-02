@@ -75,12 +75,19 @@ const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
             <h3 className="carousel-title" title={product?.title}>{product?.title}</h3>
             <div className="price-addcart-container">
               <p className="carousel-price">₹{product?.price}</p>
-              <button
-                className="carousel-add-to-cart-btn"
-                onClick={() => handleAddToCartClick(product)}
-              >
-                Add to Cart
-              </button>
+              {product?.stock <= 0 ?
+                <button
+                  className="carousel-add-to-cart-btn"
+                >
+                  Out of Stock
+                </button>
+                :
+                <button
+                  className="carousel-add-to-cart-btn"
+                  onClick={() => handleAddToCartClick(product)}
+                >
+                  Add to Cart
+                </button>}
             </div>
           </div>
         ))}
