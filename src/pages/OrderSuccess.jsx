@@ -21,7 +21,7 @@ function OrderSuccess() {
         )}
 
         <div className="success-actions">
-          <Link to="/shop" className="btn btn-primary">
+          <Link to="/products?newArrival=true" className="btn btn-primary">
             Continue Shopping
           </Link>
           <Link to="/" className="btn btn-secondary">
