@@ -1,5 +1,5 @@
-// const API_BASE_URL = "https://tharagai-api.onrender.com/products";
-const API_BASE_URL = "http://localhost:3001/products";
+const API_BASE_URL = "https://tharagai-api.onrender.com/products";
+// const API_BASE_URL = "http://localhost:3001/products";
 
 export async function fetchProducts() {
     const res = await fetch(API_BASE_URL);

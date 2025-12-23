@@ -1,5 +1,5 @@
-const API_BASE_URL = "http://localhost:3001/orders";
-// const API_BASE_URL = "https://tharagai-api.onrender.com/orders";
+// const API_BASE_URL = "http://localhost:3001/orders";
+const API_BASE_URL = "https://tharagai-api.onrender.com/orders";
 
 /* ================================
       GET ALL ORDERS
