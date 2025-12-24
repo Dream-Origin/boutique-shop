@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://tharagai-api.onrender.com/products";
+const API_BASE_URL = "https://lhad9stgsg.execute-api.ap-south-1.amazonaws.com/products";
 // const API_BASE_URL = "http://localhost:3001/products";
 
 export async function fetchProducts() {
