@@ -13,9 +13,9 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const dispatch = useDispatch()
   const { items, loading, error } = useSelector((state) => state.products);
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
   const imagesKey = useImages();
   const { id } = useParams()
   const navigate = useNavigate()
@@ -144,7 +144,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
           </div>
 
           <div className="product-actions-group">
-            <div className="quantity-selector">
+            {/* <div className="quantity-selector">
               <label>Quantity:</label>
               <div className="quantity-controls">
                 <button
@@ -167,7 +167,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
                   +
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div className="action-buttons">
 
@@ -215,6 +215,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
               header="Related Products"
               images={relatedProducts}
               headerStyle={{ color: '#333' }}
+              onAddToCart={onAddToCart}
             />
           </section>
 

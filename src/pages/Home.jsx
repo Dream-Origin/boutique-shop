@@ -27,9 +27,11 @@ function Home({ onAddToCart }) {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.products);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
+
+
 
   const newArrivalsImags = useSelector(selectProductsByCategory('newArrival'));
   const bestSellerImages = useSelector(selectProductsByCategory('bestSeller'));
@@ -41,13 +43,7 @@ function Home({ onAddToCart }) {
       alt: 'Women Fashion Collection',
       caption: 'New Women Collection',
       description: 'Discover the latest trends'
-    },
-    // {
-    //   url: banner2,
-    //   alt: 'Women Fashion Collection',
-    //   caption: 'New Women Collection',
-    //   description: 'Discover the latest trends'
-    // },
+    },   
 
   ]
 

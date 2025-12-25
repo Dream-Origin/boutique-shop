@@ -138,7 +138,7 @@ const handleSubmit = async (e) => {
       name: "THARAGAI BOUTIQUE",
       description: "Purchase from THARAGAI BOUTIQUE",
       image: boutiqueLogo,
-      order_id: "", // optional
+      order_id: mongoOrderId, // optional
       handler: async function (response) {
         const paymentId = response.razorpay_payment_id;
 

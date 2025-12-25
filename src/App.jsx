@@ -15,13 +15,14 @@ import Notification from './components/Notification'
 import { productsData } from './data/products'
 import OrderSuccess from './pages/OrderSuccess'
 import AppHeader from './components/AppHeader'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts'
 import GoogleReviews from "./components/GoogleReviews";
 import FeaturesSection from './components/FeaturesSection'
 import CustomerSupportPage from './pages/CustomerSupportPage'
 import MyOrders from './pages/MyOrders'
 import ConfirmModal from './components/ConfirmModal'
+import { fetchProducts } from './redux/slices/productsSlice'
 
 
 // Protected Route Component
@@ -36,6 +37,8 @@ function ProtectedRoute({ children, isAuthenticated }) {
 }
 
 function App() {
+  const dispatch = useDispatch()
+
   // const [cart, setCart] = useState([])
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
@@ -97,19 +100,21 @@ function App() {
     const existingItem = cart.find(item => item.productId === product.productId);
 
     if (existingItem) {
-      setCart(
-        cart.map(item =>
-          item.productId === product.productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-      showNotification(`${product.title} added to cart!`);
+      // setCart(
+      //   cart.map(item =>
+      //     item.productId === product.productId
+      //       ? { ...item, quantity: item.quantity + 1 }
+      //       : item
+      //   )
+      // );
+      // showNotification(`${product.title} added to cart!`);
+      showNotification(`${product.title} Already in cart!`);
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
+      showNotification(`${product.title} added to cart!`);
     }
 
-    showNotification(`${product.title} added to cart!`);
+
   };
 
 
@@ -177,6 +182,14 @@ function App() {
     return wishlist.some(item => item.id === id);
   }
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const el = document.querySelector(".WidgetBackground__Content-sc-386b5057-2 a");
+    if (el) el.remove();
+  });
 
   return (
     <>

@@ -70,24 +70,24 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
               </div>
               <div className="cart-item-quantity">
                 <div className="quantity-controls">
-                  <button
+                  {/* <button
                     className="qty-btn"
                     onClick={() => onUpdateQuantity(item.productId, -1)}
                   >
                     -
-                  </button>
+                  </button> */}
                   <input
                     type="number"
                     className="qty-input"
                     value={item.quantity}
                     readOnly
                   />
-                  <button
+                  {/* <button
                     className="qty-btn"
                     onClick={() => onUpdateQuantity(item.productId, 1)}
                   >
                     +
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="cart-item-total">

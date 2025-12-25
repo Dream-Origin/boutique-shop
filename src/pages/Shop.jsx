@@ -30,9 +30,9 @@ function Shop({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const dispatch = useDispatch()
   const { items, loading, error } = useSelector((state) => state.products);
   useFilterUrlSync();
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
 
   // Get filtered products from Redux selector
   const filteredProducts = useSelector(selectFilteredProducts)
