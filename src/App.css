@@ -254,3 +254,9 @@ b {
   color: var(--color-text);
   font-size: var(--font-size-base);
 }
+
+.custom_price_css::before {
+  content: '₹';
+  font-family: 'Roboto', 'Noto Sans', sans-serif;
+  margin-right: 2px;
+}

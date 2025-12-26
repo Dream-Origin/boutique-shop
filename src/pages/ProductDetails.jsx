@@ -78,7 +78,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
 
           <div className="product-price">
-            <span className="product-details-current-price">₹ {product.price}</span>
+            <span className="product-details-current-price custom_price_css">{product.price}</span>
             <span className="product-details-original-price">₹ {product.originalPrice}</span>
             <span className="product-details-discount-badge">{product.discountPercentage}% OFF</span>
           </div>

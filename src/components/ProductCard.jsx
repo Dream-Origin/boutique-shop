@@ -80,7 +80,7 @@ function ProductCard({ product, onAddToCart }) {
       )} */}
 
       <div className="product-meta-row">
-        <div className="product-price">₹ {product?.price}</div>
+        <div className="product-price custom_price_css">{product?.price}</div>
 
         {product?.stock <= 0 ?
           <button className="btn-add-cart">

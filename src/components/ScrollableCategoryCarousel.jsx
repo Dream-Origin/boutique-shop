@@ -74,7 +74,7 @@ const ScrollableCategoryCarousel = ({ header, images, type, onAddToCart }) => {
             />
             <h3 className="carousel-title" title={product?.title}>{product?.title}</h3>
             <div className="price-addcart-container">
-              <p className="carousel-price">₹{product?.price}</p>
+              <p className="carousel-price custom_price_css">{product?.price}</p>
               {product?.stock <= 0 ?
                 <button
                   className="carousel-add-to-cart-btn"

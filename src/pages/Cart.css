@@ -51,7 +51,16 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
 }
-
+.cart-item-price .discounted-price {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+  margin-right: var(--space-8);
+}
+.cart-item-price .original-price {
+   margin-right: var(--space-8);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
 .cart-item-total {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
@@ -189,10 +198,11 @@ background: #ffdaf0;
   }
 
   .cart-item-remove {
-    position: absolute;
-    top: var(--space-12);
-    right: var(--space-12);
+    position: absolute;   
     font-size: var(--font-size-lg);
+    right: 0;
+    top: 3px;
+    
   }
 
   .cart-actions {

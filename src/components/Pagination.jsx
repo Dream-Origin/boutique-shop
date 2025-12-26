@@ -23,7 +23,6 @@ export default function Pagination({ page, totalPages, onPageChange }) {
   };
 
   const pageNumbers = getPageNumbers();
-  console.log('pageNumbers:', pageNumbers); // Check if 'ellipsis' appears here
 
   return (
     <div className="pagination">

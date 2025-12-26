@@ -52,19 +52,19 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
       <div className="cart-page">
         <div className="cart-items-section">
           {cart.map(item => (
-            <div key={item.id} className="cart-item-row">
+            <div key={item.productId} className="cart-item-row">
               <img src={item.images?.[0]} alt={item.title} className="cart-item-image" />
               <div className="cart-item-details">
                 <h3>{item.title}</h3>
                 <p className="cart-item-category">{item.category}</p>
                 <p className="cart-item-price">
-                  {item.discountedPrice ? (
+                  {item.originalPrice ? (
                     <>
-                      <span className="original-price">₹{item.price.toFixed(2)}</span>
-                      <span className="discounted-price"> ₹{item.discountedPrice.toFixed(2)}</span>
+                      <span className="original-price custom_price_css">{item.price.toFixed(2)}</span>
+                      <span className="discounted-price custom_price_css"> {item.originalPrice.toFixed(2)}</span>
                     </>
                   ) : (
-                    `₹${item.price.toFixed(2)}`
+                    <span className='custom_price_css'>{item.price.toFixed(2)}</span>
                   )}
                 </p>
               </div>
@@ -90,8 +90,8 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
                   </button> */}
                 </div>
               </div>
-              <div className="cart-item-total">
-                ₹{((item.discountedPrice || item.price) * item.quantity).toFixed(2)}
+              <div className="cart-item-total custom_price_css">
+                {((item.discountedPrice || item.price) * item.quantity).toFixed(2)}
               </div>
               <button
                 className="cart-item-remove"
@@ -112,18 +112,18 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
           <h2>Cart Summary</h2>
           <div className="summary-row">
             <span>Subtotal:</span>
-            <span>₹{subtotal.toFixed(2)}</span>
+            <span className='custom_price_css'>{subtotal.toFixed(2)}</span>
           </div>
           {youSave > 0 && (
             <>
               <div className="summary-row">
 
                 <span>You Save:</span>
-                <span style={{ color: 'green', fontWeight: '600' }}>
-                  ₹{youSave.toFixed(2)}
+                <span className="custom_price_css" style={{ color: 'green', fontWeight: '600' }}>
+                  {youSave.toFixed(2)}
                 </span>
               </div>
-              
+
             </>
           )}
           <div className="summary-row">
@@ -132,12 +132,12 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
           </div>
           {subtotal - youSave < 50 && (
             <p className="shipping-notice">
-              Add ₹{(50 - (subtotal - youSave)).toFixed(2)} more for free shipping!
+              Add <span className='custom_price_css'>{(50 - (subtotal - youSave)).toFixed(2)}</span> more for free shipping!
             </p>
           )}
           <div className="summary-row total">
             <span>Total:</span>
-            <span>₹{total.toFixed(2)}</span>
+            <span className='custom_price_css'>{total.toFixed(2)}</span>
           </div>
           <button
             className="btn btn-primary btn-full-width"

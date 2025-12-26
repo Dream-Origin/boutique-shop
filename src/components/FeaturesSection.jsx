@@ -9,7 +9,7 @@ const FeaturesSection = () => {
             <FaShippingFast size={30} color="#4caf50" />
           </div>
           <h3>Free Shipping</h3>
-          <p>Get your order delivered for free when you spend ₹1000 or more.</p>
+          <p>Get your order delivered for free when you spend Rs.1000 or more.</p>
         </div>
         <div className="feature-card">
           <div className="feature-icon">

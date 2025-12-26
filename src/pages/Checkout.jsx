@@ -138,7 +138,7 @@ const handleSubmit = async (e) => {
       name: "THARAGAI BOUTIQUE",
       description: "Purchase from THARAGAI BOUTIQUE",
       image: boutiqueLogo,
-      order_id: mongoOrderId, // optional
+      order_id: '', // optional
       handler: async function (response) {
         const paymentId = response.razorpay_payment_id;
 
@@ -356,14 +356,14 @@ const handleSubmit = async (e) => {
 
           <div className="checkout-items">
             {cart.map(item => (
-              <div key={item.id} className="checkout-item">
+              <div key={item.productId} className="checkout-item">
                 <img src={item.images[0]} alt={item.title} />
                 <div className="checkout-item-info">
                   <div className="checkout-item-name">{item.title}</div>
                   <div className="checkout-item-qty">Qty: {item.quantity}</div>
                 </div>
-                <div className="checkout-item-price">
-                  ₹{(item.price * item.quantity).toFixed(2)}
+                <div className="checkout-item-price custom_price_css">
+                  {(item.price * item.quantity).toFixed(2)}
                 </div>
               </div>
             ))}
@@ -372,13 +372,13 @@ const handleSubmit = async (e) => {
           <div className="summary-totals">
             <div className="summary-row">
               <span>Subtotal:</span>
-              <span>₹{subtotal.toFixed(2)}</span>
+              <span className='custom_price_css'>{subtotal.toFixed(2)}</span>
             </div>
 
             <div className="summary-row">
               <span>You Save:</span>
-              <span style={{ color: 'green', fontWeight: '600' }}>
-                ₹{youSave.toFixed(2)}
+              <span className='custom_price_css' style={{ color: 'green', fontWeight: '600' }}>
+                {youSave.toFixed(2)}
               </span>
             </div>
 
@@ -394,7 +394,7 @@ const handleSubmit = async (e) => {
 
             <div className="summary-row total">
               <span>Total (INR):</span>
-              <span>₹{(totalInINR / 100).toFixed(2)}</span>
+              <span className='custom_price_css'>{(totalInINR / 100).toFixed(2)}</span>
             </div>
           </div>
 
