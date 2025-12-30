@@ -351,3 +351,7 @@
   border-radius: 4px;
   max-width: max-content;
 }
+
+.shop-breadcrumb-div {
+  text-align: center;
+}

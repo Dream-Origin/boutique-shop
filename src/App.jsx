@@ -138,7 +138,7 @@ function App() {
       <ScrollToTop />
       {!isAdminRoute && <AppHeader cart={cart} />}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div style={{textAlign:"center"}}>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home onAddToCart={addToCart} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />

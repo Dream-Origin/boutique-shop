@@ -248,3 +248,7 @@ background: #ffdaf0;
     padding: var(--space-16);
   }
 }
+
+.shop-breadcrumb-div {
+  text-align: center;
+}
