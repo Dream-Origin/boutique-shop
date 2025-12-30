@@ -8,9 +8,7 @@ function Footer() {
         <div className="footer-section">
           <h3>About Tharagai Boutique</h3>
           <p style={{ color: 'var(--color-text-secondary)' }}>
-            Tharagai Boutique in Hosur offers premium quality sarees, salwar materials, and handcrafted fabrics sourced from across India. Known for exquisite designs and superior craftsmanship, it provides an exclusive collection that blends tradition with modern style. Visit us at Amman Nagar, Dinnur, Hosur for authentic, handpicked attire and personalized service.
-
-
+            Tharagai is a clothing shop in hosur, tamilnadu. Focusing on premium sarees and salwar materials . We are focusing on native sarees and sure this would be a happy place those who are looking for native varieties.
           </p>
         </div>
         <div className="footer-section">
@@ -20,7 +18,6 @@ function Footer() {
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/cart">Cart</Link></li>
             <li><Link to="/my-orders">My Orders</Link></li>
-            <li>Contact - +919345032317 </li>
           </ul>
         </div>
         <div className="footer-section">
@@ -34,17 +31,13 @@ function Footer() {
           </ul>
         </div>
         <div className="footer-section">
-          <h3>Newsletter</h3>
+          <h3>Address</h3>
           <p style={{ color: 'var(--color-text-secondary)', marginBottom: '16px' }}>
-            Subscribe to get special offers and updates
+            reddys biriyani backside, Plot no 1A, Amman Nagar, Navadhi, Dinnur, Hosur, Tamil Nadu 635109
+            
+            <br/>Contact - +919345032317 
           </p>
-          <input
-            type="email"
-            className="search-input"
-            placeholder="Your email"
-            style={{ marginBottom: '12px', width: '100%' }}
-          />
-          <button className="btn btn-primary" style={{ width: '100%' }} disabled>Subscribe</button>
+
         </div>
       </div>
       <div className="footer-bottom">
