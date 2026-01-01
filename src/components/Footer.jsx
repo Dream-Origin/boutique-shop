@@ -33,7 +33,7 @@ function Footer() {
         <div className="footer-section">
           <h3>Address</h3>
           <p style={{ color: 'var(--color-text-secondary)', marginBottom: '16px' }}>
-            reddys biriyani backside, Plot no 1A, Amman Nagar, Navadhi, Dinnur, Hosur, Tamil Nadu 635109
+            Reddys biriyani backside, Plot no 1A, Amman Nagar, Navadhi, Dinnur, Hosur, Tamil Nadu 635109
             
             <br/>Contact - +919345032317 
           </p>
