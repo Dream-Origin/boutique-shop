@@ -5,16 +5,10 @@ import Carousel from '../components/Carousel'
 import ScrollableCategoryCarousel from '../components/ScrollableCategoryCarousel'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProductsByCategory } from '../redux/selectors/productsSelectors';
-import FeaturesSection from '../components/FeaturesSection'
 import CategoriesSection from '../components/CategoriesSection';
-import banner1 from '../data/images/banner1.png';
-import banner2 from '../data/images/banner2.png';
 import banner3 from '../data/images/banner3.png';
 import BoutiqueCard from '../components/BoutiqueCard'
-import HeroCard from '../components/HeroCard'
 import PriceFilterSection from '../components/PriceFilterSection'
-import GoogleReviews from "../components/GoogleReviews";
-import { fetchProducts } from '../redux/slices/productsSlice'
 import { setPriceRange } from '../redux/slices/filterSlice'
 import HorizontalProductSkeleton from '../components/HorizontalProductSkeleton'
 
@@ -43,7 +37,7 @@ function Home({ onAddToCart }) {
       alt: 'Women Fashion Collection',
       caption: 'New Women Collection',
       description: 'Discover the latest trends'
-    },   
+    },
 
   ]
 
@@ -72,8 +66,12 @@ function Home({ onAddToCart }) {
 
 
       {/* Carousel Section */}
-      <section className="carousel-section">
+      {/* <section className="carousel-section">
         <Carousel images={carouselImages} autoPlay={true} interval={4000} />
+       
+      </section> */}
+      <section className='banner-image-wrapper'>
+        <img  src={banner3} alt='banner' loading='lazy' />
       </section>
 
       <BoutiqueCard />

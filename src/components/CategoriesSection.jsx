@@ -1,19 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import newArrival from '../data/images/newArrival.png'
 import salwarMaterials from '../data/images/salwarMaterials.png'
 import bestSeller from '../data/images/bestSeller.png'
 import readyToWear from '../data/images/readyToWear.png'
 import unique from '../data/images/unique.png'
 import { useApplyHomeFilter } from '../hooks/useApplyHomeFilter';
 const categories = [
-  {
-    name: 'New Arrival',
-    image: newArrival,
-    link: '/shop?category=newArrival',
-    type: 'newArrival'
-  },
+ 
   {
     name: 'Salwar Materials',
     image: salwarMaterials,
