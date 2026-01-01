@@ -11,4 +11,5 @@ export default defineConfig({
     outDir: 'dist',    // Output directory for production build
     sourcemap: false,  // Disable source maps in production
   },
+  base: './'
 })
