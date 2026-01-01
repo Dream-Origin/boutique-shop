@@ -8,7 +8,7 @@ function Footer() {
         <div className="footer-section">
           <h3>About Tharagai Boutique</h3>
           <p style={{ color: 'var(--color-text-secondary)' }}>
-            Tharagai is a clothing shop in hosur, tamilnadu. Focusing on premium sarees and salwar materials . We are focusing on native sarees and sure this would be a happy place those who are looking for native varieties.
+            Tharagai Boutique is your one-stop destination for premium unstitched dress materials and elegant ready-to-wear suits. We offer exclusive collections crafted from high-quality fabrics, designed to bring out timeless style and comfort. Our ready-to-wear range features premium Jaipur cotton, known for its softness, breathability, and classic appeal. Discover the latest trends and handpicked designs on our website. Happy shopping!
           </p>
         </div>
         <div className="footer-section">

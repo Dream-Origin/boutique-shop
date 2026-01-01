@@ -62,7 +62,6 @@ function StandardHeader({ cart }) {
                 <span onClick={() => applyFilter('readyToWear')}>Ready to wear</span>
                 <span onClick={() => applyFilter('bestSeller')}>Best Seller</span>
                 <span onClick={() => applyFilter('exclusive')}>Exclusive</span>
-                <span onClick={() => applyFilter('exclusive')}>Exclusive</span>
                 <span onClick={navigateToOrders}>My Orders</span>
             </nav>
         </header>
