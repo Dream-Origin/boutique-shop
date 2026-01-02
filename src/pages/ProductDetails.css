@@ -234,7 +234,8 @@
     font-size: 0.8rem;
 }
 .product-details-product-colors,
-.product-details-product-sizes {
+.product-details-product-sizes,
+ .product-details-product-fabric{
   margin: 15px 0;
   display: flex;
   align-items: center;
@@ -243,7 +244,8 @@
 }
 
 .product-details-product-colors strong,
-.product-details-product-sizes strong {
+.product-details-product-sizes strong,
+.product-details-product-fabric strong{
   margin-right: 10px;
   min-width: 60px; /* keeps the label aligned */
 }

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useImages } from '../hooks/useImages';
 import ScrollableCategoryCarousel from '../components/ScrollableCategoryCarousel'
 import { fetchProducts } from '../redux/slices/productsSlice'
-
+import ProductImageZoom from '../components/ProductImageZoom'
 function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const dispatch = useDispatch()
@@ -61,10 +61,16 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
       </div>
 
       <div className="product-details">
-        <div className="product-details-image">
+        {/* <div className="product-details-image">
           {product && <img src={product?.images?.[0]} alt={product.title} />}
-          <span className="product-badge">{product.badge}</span>
-        </div>
+          <span className="product-badge">{product.tags?.[0]}</span>
+        </div> */}
+        <ProductImageZoom
+          src={product?.images?.[0]}
+          alt={product?.title}
+          badge={product?.tags?.[0]}
+        />
+
 
         <div className="product-details-info">
           <div className="product-category">{product.subCategory}</div>
@@ -97,16 +103,18 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
           <div className="product-details-product-variants">
             <div className="product-details-product-colors">
               <strong>Color:</strong>
-              {product.colors.map((color, index) => (
+              <span>{product.colors?.[0]}</span>
+              {/* {product.colors.map((color, index) => (
                 <span
                   key={index}
                   className="product-details-color-circle"
                   style={{ backgroundColor: color.toLowerCase().replace(/\s+/g, '') }}
                   title={color}
                 ></span>
-              ))}
+              ))} */}
             </div>
-            {product.fabric && <div>
+            
+            {product.fabric && <div className='product-details-product-fabric'>
               <strong>Fabric: </strong>
               <span>{product.fabric}</span>
 
@@ -190,7 +198,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
 
           <div className="product-meta">
             <div className="meta-item">
-              <strong>SKU:</strong> {product.productId}
+              <strong>Product Code:</strong> {product.productId}
             </div>
             <div className="meta-item">
               <strong>Fabric:</strong> {product.fabric}

@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -9,23 +9,22 @@ import ConfirmModal from './components/ConfirmModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredProducts } from './redux/selectors/selectFilteredProducts';
 import { fetchProducts } from './redux/slices/productsSlice';
+// Pages
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
+import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import OrderSuccess from './pages/OrderSuccess';
+import CustomerSupportPage from './pages/CustomerSupportPage';
+import MyOrders from './pages/MyOrders';
 
-// Lazy-loaded pages
-const Home = lazy(() => import('./pages/Home'));
-const Shop = lazy(() => import('./pages/Shop'));
-const ProductDetails = lazy(() => import('./pages/ProductDetails'));
-const Cart = lazy(() => import('./pages/Cart'));
-const Wishlist = lazy(() => import('./pages/Wishlist'));
-const Checkout = lazy(() => import('./pages/Checkout'));
-const Login = lazy(() => import('./pages/Login'));
-const Register = lazy(() => import('./pages/Register'));
-const OrderSuccess = lazy(() => import('./pages/OrderSuccess'));
-const CustomerSupportPage = lazy(() => import('./pages/CustomerSupportPage'));
-const MyOrders = lazy(() => import('./pages/MyOrders'));
-
-// Lazy-loaded heavy components
-const GoogleReviews = lazy(() => import("./components/GoogleReviews"));
-const FeaturesSection = lazy(() => import('./components/FeaturesSection'));
+// Components
+import GoogleReviews from './components/GoogleReviews';
+import FeaturesSection from './components/FeaturesSection';
 
 // Protected Route Component
 function ProtectedRoute({ children, isAuthenticated }) {
@@ -138,45 +137,37 @@ function App() {
       <ScrollToTop />
       {!isAdminRoute && <AppHeader cart={cart} />}
 
-      <Suspense fallback={<div style={{textAlign:"center"}}>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Home onAddToCart={addToCart} />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/register" element={<Register onRegister={handleRegister} />} />
-          <Route
-            path="/products"
-            element={<Shop onAddToCart={addToCart} onToggleWishlist={toggleWishlist} isInWishlist={isInWishlist} />}
-          />
-          <Route
-            path="/product/:id"
-            element={<ProductDetails onAddToCart={addToCart} onToggleWishlist={toggleWishlist} isInWishlist={isInWishlist} />}
-          />
-          <Route
-            path="/cart"
-            element={<Cart cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart} onClearCart={clearCart} />}
-          />
-          <Route
-            path="/wishlist"
-            element={<Wishlist wishlist={wishlist} onAddToCart={addToCart} onRemoveFromWishlist={toggleWishlist} />}
-          />
-          <Route
-            path="/checkout"
-            element={<Checkout cart={cart} />}
-          />
-          <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/customer-support" element={<CustomerSupportPage />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home onAddToCart={addToCart} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/register" element={<Register onRegister={handleRegister} />} />
+        <Route
+          path="/products"
+          element={<Shop onAddToCart={addToCart} onToggleWishlist={toggleWishlist} isInWishlist={isInWishlist} />}
+        />
+        <Route
+          path="/product/:id"
+          element={<ProductDetails onAddToCart={addToCart} onToggleWishlist={toggleWishlist} isInWishlist={isInWishlist} />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart} onClearCart={clearCart} />}
+        />
+        <Route
+          path="/wishlist"
+          element={<Wishlist wishlist={wishlist} onAddToCart={addToCart} onRemoveFromWishlist={toggleWishlist} />}
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout cart={cart} />}
+        />
+        <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/customer-support" element={<CustomerSupportPage />} />
+      </Routes>
 
-        <Suspense fallback={<div>Loading Reviews...</div>}>
-          <GoogleReviews />
-        </Suspense>
-
-        <Suspense fallback={<div>Loading Features...</div>}>
-          <FeaturesSection />
-        </Suspense>
-      </Suspense>
-
+      <GoogleReviews />
+      <FeaturesSection />
       <Notification show={notification.show} message={notification.message} />
       {!isAdminRoute && <Footer />}
       <ConfirmModal
