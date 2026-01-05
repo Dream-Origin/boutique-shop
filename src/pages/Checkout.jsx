@@ -132,7 +132,7 @@ const handleSubmit = async (e) => {
 
     // 2️⃣ Setup Razorpay payment
     const options = {
-      key: "rzp_test_miAIXVeH46aVmS",
+      key: "rzp_live_S09MaJmlfXxM2S",
       amount: totalInINR,
       currency: "INR",
       name: "THARAGAI BOUTIQUE",
