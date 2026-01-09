@@ -167,6 +167,7 @@ function App() {
       </Routes>
 
       <GoogleReviews />
+      
       <FeaturesSection />
       <Notification show={notification.show} message={notification.message} />
       {!isAdminRoute && <Footer />}
