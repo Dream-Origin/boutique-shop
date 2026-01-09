@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoogleReviews } from "react-elfsight-reviews";
 import './GoogleReviews.css';
 
 function GoogleReviewsLayout() {
+  useEffect(() => {
+    // 1. Create the script element
+    const script = document.createElement('script');
+    script.src = "https://featurable.com/assets/v2/carousel_default.min.js";
+    script.async = true;
+
+    // 2. Add the script to the page
+    document.body.appendChild(script);
+
+    // 3. Optional: Cleanup when the component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []); // Empty array means this runs once after the first render
   return (
     <>
       {/* <div className="google-review-root">
