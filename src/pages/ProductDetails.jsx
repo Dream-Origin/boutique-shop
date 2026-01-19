@@ -90,7 +90,7 @@ function ProductDetails({ onAddToCart, onToggleWishlist, isInWishlist }) {
           </div>
 
           {/* Savings info, if available */}
-          {product.originalPrice && product.price && product.discountPercentage > 0 && (
+          {product.originalPrice > 0 && product.price > 0 && product.discountPercentage > 0 && (
             <div className="savings-info">
               {`Saved ₹ ${(product.originalPrice - product.price).toLocaleString('en-IN')} (${product.discountPercentage}%) on this item when compared to the market price`}
             </div>
