@@ -126,11 +126,11 @@ function Cart({ cart, onUpdateQuantity, onRemoveFromCart, onClearCart }) {
 
             </>
           )}
-          <div className="summary-row">
+          {/* <div className="summary-row">
             <span>Shipping:</span>
             <span>{subtotal - youSave > 50 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
-          </div>
-          {subtotal - youSave < 50 && (
+          </div> */}
+          {subtotal - youSave < 0 && (
             <p className="shipping-notice">
               Add <span className='custom_price_css'>{(50 - (subtotal - youSave)).toFixed(2)}</span> more for free shipping!
             </p>
