@@ -7,7 +7,7 @@ import boutiqueLogo from '../data/images/logo.png';
 
 import { createOrder, updateOrderStatus } from "../api/ordersApi"; // import your API functions
 
-function Checkout({ cart, user }) {
+function Checkout({ cart, user, cleaCartItem }) {
   const imagesKey = useImages();
 
   const navigate = useNavigate()
@@ -133,6 +133,7 @@ const handleSubmit = async (e) => {
     // 2️⃣ Setup Razorpay payment
     const options = {
       key: "rzp_live_S09MaJmlfXxM2S",
+      // key: "rzp_test_miAIXVeH46aVmS",
       amount: totalInINR,
       currency: "INR",
       name: "THARAGAI BOUTIQUE",
@@ -146,6 +147,7 @@ const handleSubmit = async (e) => {
         await updateOrderStatus(mongoOrderId, "Confirmed", paymentId);
 
         // Clear cart
+        
         localStorage.removeItem("cart");
 
         // Redirect to success page

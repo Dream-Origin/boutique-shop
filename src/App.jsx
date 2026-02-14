@@ -43,6 +43,7 @@ function App() {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
+
   const [wishlist, setWishlist] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [user, setUser] = useState(null);
@@ -112,6 +113,10 @@ function App() {
     showNotification("Cart cleared!");
   };
 
+  const cleaCartItem = () => {
+    setCart([]);
+  }
+
   const handleCancelClear = () => setShowConfirm(false);
 
   const toggleWishlist = (id) => {
@@ -159,9 +164,9 @@ function App() {
         />
         <Route
           path="/checkout"
-          element={<Checkout cart={cart} />}
+          element={<Checkout cart={cart} cleaCartItem={cleaCartItem} />}
         />
-        <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/order-success" element={<OrderSuccess cleaCartItem={cleaCartItem} />} />
         <Route path="/my-orders" element={<MyOrders />} />
         <Route path="/customer-support" element={<CustomerSupportPage />} />
       </Routes>

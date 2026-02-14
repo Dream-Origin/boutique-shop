@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './OrderSuccess.css'
 
-function OrderSuccess() {
+function OrderSuccess({ cleaCartItem }) {
   const location = useLocation()
   const { paymentId, orderId } = location.state || {}
+  useEffect(() => {
+    // Clear the cart after successful order
+    cleaCartItem();
+  }, []);
 
   return (
     <div className="shop-container">
@@ -12,7 +16,7 @@ function OrderSuccess() {
         <div className="success-icon">✅</div>
         <h1>Order Placed Successfully!</h1>
         <p>Thank you for your purchase. Your order has been confirmed.</p>
-        
+
         {paymentId && (
           <div className="order-details">
             <p><strong>Payment ID:</strong> {paymentId}</p>
