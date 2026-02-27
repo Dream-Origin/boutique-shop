@@ -10,7 +10,13 @@ const BoutiqueCard = () => {
                 </h2>
 
                 <p className="boutique_description">
-                    At Tharagai Boutique in Hosur, dressing up is simple and comfortable. They offer a lovely range of salwar materials, neatly stitched salwar sets, and ready-to-wear outfits that make getting ready feel effortless. Whether you want something light for daily wear or a neatly finished stitched set for a small function, Tharagai has options that are easy to style and easy to love — all while keeping that classic ethnic touch.
+                    Tharagai Boutique presents an exclusive curation of unstitched dress materials and premium ready-to-wear salwar sets, designed for those with a discerning taste for refined elegance.
+                    <br /><br />
+                    Every piece reflects our commitment to exceptional quality, superior comfort, and distinctive craftsmanship. From thoughtfully priced essentials to indulgent premium collections, Tharagai offers a seamless blend of tradition and sophistication.
+                    <br /><br />
+                    Our artisanal selections — Kalamkari, handwoven cottons, and Jamdani — honor India's rich textile heritage while embracing contemporary aesthetics. Each ensemble is effortlessly graceful, easy to style, and timelessly luxurious, preserving the charm of classic ethnic wear.
+                    <br /><br />
+                    At Tharagai, luxury is not just worn — it is experienced.
                 </p>
             </div>
         </section>

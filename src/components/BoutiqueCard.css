@@ -6,7 +6,7 @@
     padding: 80px 20px;
     background: #fff;
     overflow: hidden;
-    text-align: center;
+    /* text-align: center; */
 }
 
 /* Floating Circle in Top-Left */
@@ -44,7 +44,7 @@
 
 /* Text Styling */
 .boutique_card {
-    max-width: 700px;
+    max-width: 80%;
     width: 100%;
     z-index: 1; /* above floating circles */
 }
@@ -54,6 +54,7 @@
     font-weight: 600;
     color: #3d2b21;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .boutique_description {
